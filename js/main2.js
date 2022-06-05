@@ -38,17 +38,9 @@ formSignin.addEventListener('submit', (e) => {
 })
 
 // FUNCIONES USER STATE
+
 const onAuthState = () => {
-  let state = JSON.parse(localStorage.getItem('userState'))
-  if(!state){
-    return false
-  }
-
-  return state
-}
-
-const authTrue = () => {
-  if(!userState){
+  if(userState.length === 0){
     return
   }
   contentUser = `
@@ -205,8 +197,7 @@ const signIn = () => {
     text: 'Tus datos no seran compartidos a nadie'
   })
   console.log(userState)
-  authTrue()
-  
+  onAuthState()
 }
 
 // FUNCIONES STORAGE
@@ -231,10 +222,11 @@ const uploadStorageUser = () => {
 // VARIABLES GLOBALES
 
 let users = getStorage('users')
-let userState = onAuthState()
-authTrue()
+let userState = getStorage('userState')
+onAuthState()
 
-if(userState){
+
+if(userState.length !== 0){
   const btnLogout = document.querySelector('#btn__logOut')
   console.log(btnLogout)
   btnLogout.addEventListener('click', (e) => {
