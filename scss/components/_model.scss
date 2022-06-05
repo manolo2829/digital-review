@@ -1,0 +1,270 @@
+@import '../base/base';
+body{
+    overflow: hidden;
+    background: url('../img/ufo-1265186_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.400);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .container-lg{
+        height: 80vh;
+        background-color: $bg-dark;
+
+        .model__container{
+
+            height: 100%;
+
+            .model__menu{
+                padding: $p-3 $p-2;
+                overflow-y: scroll;
+                height: 100%;
+
+                @media (min-width: 992px) {
+                    padding: $p-5;
+                }
+
+                .menu__title{
+                    font-size: $h3-font-size;
+                }
+
+                h2{
+                    color: $color-gray;
+                    @extend %menuSubtitle--responsive;
+                    text-align: center;
+                    margin: $m-4 0;
+
+                    @media (min-width: 992px) {
+                        text-align: start;
+                        font-size: $h6-font-size;
+                    }
+                    
+                }
+
+                ul{
+                    list-style: none;
+                    @extend %flex;
+                    align-items: center;
+                    @media (min-width: 992px) {
+                        align-items: flex-start;
+                    }
+                   
+
+                    li{
+                        margin: $m-3 0;
+                        a{
+                            text-decoration: none;
+                            color: $color-gray;
+                            font-size: $h6-font-size;
+                     
+                           
+
+
+                            &:hover{
+                                color: $color-blue;
+                            }
+
+                            &.active{
+                                i{
+                                    color: $color-blue;
+                                }
+                                @media (min-width: 992px) {
+                                    i{
+                                        color: #fff;
+                                        background-color: $color-blue;
+                                        
+                                    }
+    
+                                    p{
+                                        color: #fff;
+                                    }
+                                }
+                                
+                            }
+
+                            @media (min-width: 992px) {
+                                i{
+                                    background-color: $color-grayBlack;
+                                    padding: $p-2;
+                                    border-radius: 8px;
+                                    
+                                }
+
+                                &:hover{
+                                    i{
+                                        color: #fff;
+                                        background-color: $color-blue;
+                                        
+                                    }
+
+                                    p{
+                                        color: #fff;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                hr{
+                    color: $color-gray;
+                    margin: $m-3 0;
+                }
+
+                @extend %scrollBar;
+
+            }
+
+            .model__body{
+                height: 100%;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                padding: $p-4;
+                @extend %scrollBar;
+
+                @media (min-width: 992px) {
+                    padding: $p-5;
+                }
+
+                .body__menu{
+                    h3{
+                        color: #fff;
+                    }
+            
+                    div{
+                        
+
+            
+                        .menu__notifications{
+                            button{
+                                i{
+                                    color: $color-gray;
+                                }
+                                &:hover{
+                                    i{
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                
+                            ul{
+                                background-color: $color-grayBlack;
+                                max-height: 60vh;
+                                overflow-y: scroll;
+                                @extend %scrollBar2;
+                                padding: 0;
+                                width: 200px;
+    
+                                li{
+                                    width: 100%; 
+                                    padding: $p-2 $p-4;
+                                    margin-bottom: $m-4 0;
+                                    border-bottom: 2px solid $color-gray;                                    
+                                    
+                                    p{
+                                        color: #fff;
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .menu__user{
+                            button{
+                                color: $color-gray;
+                                background-color: transparent;
+                                border: none;
+                                padding-bottom: $p-2;
+
+                                &:hover{
+                                    color: #fff;
+                                }
+                            }
+                
+                            ul{
+                                background-color: $color-grayBlack;
+                                max-height: 60vh;
+                                overflow-y: scroll;
+                                @extend %scrollBar2;
+                                padding: 0;
+                                width: 200px;
+                                
+    
+                                li{
+                                    padding: $p-2 $p-4;
+                                    margin-bottom: $m-4 0;
+                                    border-bottom: 2px solid $color-gray; 
+                                    
+                                    a{
+                                        font-size: 16px;
+                                        text-decoration: none;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+
+                        
+                    }
+                }
+            }
+
+        }
+    }
+
+    .modal{
+        .modal-content{
+            background-color: $bg-dark;
+
+            h6{
+                color: #fff;
+            }
+
+            label{
+                color: $color-gray;
+            }
+
+            input{
+                background-color: $color-grayBlack;
+                border: $bg-dark;
+                color: $color-gray;
+            }
+
+            .form-select{
+                background-color: $color-grayBlack;
+                border: none;
+                color: $color-gray
+            }
+
+            button{
+                background-color: $color-blue;
+                border: none;
+                color: #fff;
+
+                &.btn__close{
+                    background-color: rgb(198, 0, 0);
+                    color: #fff;
+                }
+
+                &:nth-child(2){
+                    background-color: $color-grayBlack;
+                    color: $color-gray;
+                }
+            }
+        }
+    }
+
+    
+}

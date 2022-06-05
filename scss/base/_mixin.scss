@@ -1,0 +1,111 @@
+@import './values';
+@import './colors';
+%scrollBar{
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    
+    &::-webkit-scrollbar:vertical {
+        width:8px;
+    }
+    
+    &::-webkit-scrollbar-button:increment{
+        display: none;
+    } 
+    &::-webkit-scrollbar-button{
+        display: none;
+    }
+    
+    &::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        // background-color: rgb(13, 110, 253);
+        background-color: #181722;
+        border-radius: 20px;
+
+    }
+    
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+}
+
+%scrollBar2{
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        background-color: rgba(0, 0, 0, 0.400);
+    }
+    
+    &::-webkit-scrollbar:vertical {
+        width:8px;
+    }
+    
+    &::-webkit-scrollbar-button:increment{
+        display: none;
+    } 
+    &::-webkit-scrollbar-button{
+        display: none;
+    }
+    
+    &::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        // background-color: rgb(13, 110, 253);
+        background-color: #181722;
+        border-radius: 20px;
+
+    }
+    
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+}
+
+%flex{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+%textShadow--shadow{
+    text-shadow: 16px 22px 11px rgba(0, 0, 0, 0.8);
+}
+
+%textShadow--multi{
+    text-shadow: 20px 10px 0px #ff5900,
+    -15px -6px 0px #4bb1cd;  
+}
+
+%textShadow--fire{
+    color: #fff;
+    background: #000;
+    text-shadow: 0px -1px 4px white, 0px -2px 10px yellow, 0px -10px 20px #ff8000, 0px -18px 40px red;
+}
+
+
+%textShadow--radio{
+    text-shadow: -5px 5px 0px #61bdd6,
+                 -10px 10px 0px #398da4,
+                 -15px 15px 0px #1983a1;
+}
+
+%textShadow--elegant{
+    text-shadow: 0 2px 1px #6d9ca0, 
+      -1px 3px 1px #7594ad, 
+      -2px 5px 1px #1b6572;
+  
+}
+
+%menuSubtitle--responsive{
+    font-size: $h6-font-size;
+
+    @media (min-width: 992px) {
+        font-size: $h5-font-size;
+    }
+
+}

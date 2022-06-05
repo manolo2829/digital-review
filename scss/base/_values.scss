@@ -1,0 +1,24 @@
+
+$font-size-base:              1rem; // Assumes the browser default, typically `16px`
+$h1-font-size:                $font-size-base * 2.5;
+$h2-font-size:                $font-size-base * 2;
+$h3-font-size:                $font-size-base * 1.75;
+$h4-font-size:                $font-size-base * 1.5;
+$h5-font-size:                $font-size-base * 1.25;
+$h6-font-size:                $font-size-base;
+
+$p: 1rem;
+$p-1: $p * .25;
+$p-2: $p * .5;
+$p-3: $p;
+$p-4: $p * 1.5;
+$p-5: $p * 3;
+
+
+$m: 1rem;
+$m-1: $m * .25;
+$m-2: $m * .5;
+$m-3: $m;
+$m-4: $m * 1.5;
+$m-5: $m * 3;
+
