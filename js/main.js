@@ -39,7 +39,7 @@ let products = [
     description: 'lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas',
     category: 'remeras',
     price: 100
-  },
+  }
 ]
 
 
@@ -47,6 +47,8 @@ let products = [
 const formSingup = document.querySelector('#formSignup')
 // FORM SIGN IN
 const formSignin = document.querySelector('#formSignin')
+// FORM CREATE PRODUCT
+const formCreateProduct = document.querySelector('#formCreateProduct')
 // USER METHODS
 const userMethods = document.querySelector('#menu__methods')
 const userNotification = document.querySelector('#user__notifications')
@@ -54,6 +56,7 @@ const userMenu = document.querySelector('#user__menu')
 // STORE METHODS
 const storeInputFilter = document.querySelector('#storeInputFilter')
 const storeBody = document.querySelector('#storeBody')
+const productCategoryFilter = document.querySelector('#productCategoryFilter')
 
 //EVENTOS USER
 formSingup.addEventListener('submit', (e) => {
@@ -65,6 +68,12 @@ formSignin.addEventListener('submit', (e) => {
   e.preventDefault()
   signIn()
 })
+
+formCreateProduct.addEventListener('submit', (e) => {
+  e.preventDefault()
+  addProduct()
+})
+
 
 // FUNCIONES USER STATE
 
@@ -239,6 +248,17 @@ const getStorage = (name) => {
   return JSON.parse(storage)
 }
 
+const getStorageProducts = () => {
+  let storage = localStorage.getItem('products')
+  if(!storage){
+    localStorage.setItem('products', JSON.stringify(products))
+    console.log(products)
+    return products;
+  }
+  console.log(storage)
+  return JSON.parse(storage)
+}
+
 const uploadStorageUser = () => {
   let storage = localStorage.getItem('users')
   if(!storage){
@@ -248,40 +268,96 @@ const uploadStorageUser = () => {
   localStorage.setItem('users', JSON.stringify(users))
 }
 
+const uploadStorageProducts = () => {
+  localStorage.setItem('products', JSON.stringify(products))
+}
+
 // FUNIONES STORE
-const writeProducts = () => {
-  
-  for(let product of products){
-    const content = `
-    <a href="#" class="col-12 col-md-6 col-lg-3">
-      <div class="card">
-        <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${product.title}</h5>
-          <p class="card-text">$${product.price}</p>
-        </div>
-        <div class="card-footer">
-          <small>Category <span>${product.category}</span></small>
-        </div>
-      </div>
-    </a>
-    
-    `
-    storeBody.innerHTML += content
+
+const filtrar = () => {
+  // console.log(filtro.value)
+  storeBody.innerHTML = '';
+
+  const texto = storeInputFilter.value.toLowerCase();
+  const categoria = productCategoryFilter.value.toLowerCase()
+
+  for( let product of storageProducts){
+      let title = product.title.toLowerCase();
+      let category = product.category.toLowerCase();
+
+      if(title.indexOf(texto || categoria) !== -1 || category.indexOf(texto || categoria) !== -1){
+        const content = `
+        <a href="#" class="col-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${product.title}</h5>
+              <p class="card-text">$${product.price}</p>
+            </div>
+            <div class="card-footer">
+              <small>Category <span>${product.category}</span></small>
+            </div>
+          </div>
+        </a>
+        `
+        storeBody.innerHTML += content;
+      }
 
   }
 
-
+  if(storeBody.innerHTML === ''){
+      storeBody.innerHTML += `<h6 class='text__not__found'>Producto no encontrado</h6>`
+  }
 }
+
+const addProduct = () => {
+  const title = formCreateProduct.querySelector('#productTitle').value
+  const description = formCreateProduct.querySelector('#productDescription').value
+  const price = formCreateProduct.querySelector('#productPrice').value
+  const category = formCreateProduct.querySelector('#productCategory').value
+
+  if(!title || !description || !price || !category){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Campos vacios',
+      text: 'Debe llenar todos los campos con informacion valida'
+    })
+
+    return;
+  }
+
+  newProduct = {
+    title: title,
+    description: description,
+    category: category,
+    price: price
+  }
+
+  storageProducts.push(newProduct)
+  localStorage.setItem('products', JSON.stringify(storageProducts))
+  console.log(products)
+  storageProducts = getStorageProducts()
+  filtrar()
+}
+
+//EVENTO FILTRAR
+storeInputFilter.addEventListener('keyup', () => {
+  productCategoryFilter.value = ''
+  filtrar()
+})
+productCategoryFilter.addEventListener('change', () => {
+  storeInputFilter.value = ''
+  filtrar()
+})
 
 // VARIABLES GLOBALES
 
 let users = getStorage('users')
 let userState = getStorage('userState')
-let storageProducts = getStorage('products')
+let storageProducts = getStorageProducts()
 console.log(storageProducts)
 onAuthState()
-writeProducts()
+filtrar()
 
 
 if(userState.length !== 0){

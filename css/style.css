@@ -513,6 +513,9 @@ body .container-lg .model__container .model__menu h2 {
 #pills-home .home__header .home__header__slider .swiper .swiper-wrapper .swiper-slide:nth-child(5) {
   background-color: #808191;
 }
+#pills-home .home__products {
+  margin: 3rem 0;
+}
 #pills-home .home__products .products__title h3 {
   color: #808191;
   text-align: center;
@@ -531,6 +534,7 @@ body .container-lg .model__container .model__menu h2 {
 #pills-home .home__comments .comments__title {
   color: #808191;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 #pills-home .home__comments .comments__body .swiper {
   height: 300px;
@@ -647,17 +651,23 @@ body .container-lg .model__container .model__menu h2 {
 #pills-store .store__filter button i {
   color: #808191;
 }
-#pills-store .store__filter ul {
+#pills-store .store__filter select {
   background-color: #353340;
+  color: #808191;
+  border: none;
+  width: 20px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-left: 4px solid #1f1d2b;
 }
-#pills-store .store__filter ul li a {
+#pills-store .store__filter select option {
   color: #808191;
 }
 #pills-store .store__filter input {
   background-color: #353340;
   border: none;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
   margin: 1.5rem 0.5rem;
   max-width: 500px;
   color: #808191;
@@ -689,6 +699,11 @@ body .container-lg .model__container .model__menu h2 {
 }
 #pills-store .store__body a .card:hover {
   transform: scale(1.05);
+}
+#pills-store .store__body .text__not__found {
+  text-align: center;
+  color: #808191;
+  margin: 3rem 0;
 }
 
 * {

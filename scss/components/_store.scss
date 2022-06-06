@@ -12,20 +12,25 @@
                 color: $color-gray;
             }
         }
-        ul{
+        
+
+        select{
             background-color: $color-grayBlack;
-            li{
-                a{
-                    color: $color-gray;
-                }
-                
+            color: $color-gray;
+            border: none;
+            width: 20px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-left: 4px solid $bg-dark;
+            option{
+                color: $color-gray;
             }
         }
         input{
             background-color: $color-grayBlack;
             border: none;
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
             margin: $p-4 $p-2;
             max-width: 500px;
             color: $color-gray;
@@ -63,6 +68,12 @@
                     transform: scale(1.05);
                 }
             }
+        }
+
+        .text__not__found{
+            text-align: center;
+            color: $color-gray;
+            margin: $m-5 0;
         }
     }
 } 

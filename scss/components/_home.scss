@@ -121,6 +121,9 @@
     }
 
     .home__products{
+        
+        margin: $m-5 0;
+
         .products__title{
             h3{
                 color: $color-gray;
@@ -153,6 +156,7 @@
         .comments__title{
             color: $color-gray;
             text-align: center;
+            margin-bottom: $m-4;
         }
 
         .comments__body{

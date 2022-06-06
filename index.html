@@ -263,12 +263,14 @@
                     <div class="tab-pane fade" id="pills-store" role="tabpanel" aria-labelledby="pills-store-tab" tabindex="0">
                         <div class="row  store__filter">
                             <div class="input-group justify-content-center mb-3">
-                                <button class="input-group-text" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    
-                                  </ul>
-                                <input type="text" class="form-control m-0" placeholder="Buscar" id="storeInputFilter" aria-label="Username" aria-describedby="basic-addon1">
+                 
+                                <input type="text" class="form-control m-0" placeholder="Buscar" id="storeInputFilter" aria-describedby="basic-addon1">
+                                <select class="" id="productCategoryFilter">
+                                    <option value="">Todos</option>
+                                    <option value="buzos">Buzos</option>
+                                    <option value="remeras">Remeras</option>
+                                    <option value="camperas">Camperas</option>
+                                </select>
                             </div>
                         </div>
 
@@ -373,29 +375,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formSignup">
+                    <form id="formCreateProduct">
                         <div class="mb-3">
-                            <label for="signupEmail" class="form-label">Nombre del producto</label>
-                            <input type="text" class="form-control" id="signupEmail">
+                            <label for="productTitle" class="form-label">Nombre del producto</label>
+                            <input type="text" class="form-control" id="productTitle">
                         </div>
                         <div class="mb-3">
-                            <label for="signupUsername" class="form-label">Descripcion</label>
-                            <input type="text" class="form-control" id="signupUsername">
+                            <label for="productDescription" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="productDescription">
                         </div>
                         <div class="mb-3">
-                            <label for="signupUsername" class="form-label">Precio</label>
-                            <input type="text" class="form-control" id="signupUsername">
+                            <label for="productPrice" class="form-label">Precio</label>
+                            <input type="text" class="form-control" id="productPrice">
                         </div>
                         <div class="mb-3">
-                            <label for="signupUsername" class="form-label">Categoria</label>
-                            <select class="form-select" id="signupUsername">
+                            <label for="productCategory" class="form-label">Categoria</label>
+                            <select class="form-select" id="productCategory">
                                 <option selected>Choose...</option>
-                                <option value="1">Buzos</option>
-                                <option value="2">Remera</option>
-                                <option value="3">Camperass</option>
+                                <option value="buzos">Buzos</option>
+                                <option value="remeras">Remeras</option>
+                                <option value="camperas">Camperas</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn" >Registrarse</button>
+                        <button type="submit" class="btn" >Crear producto</button>
                         <button type="button" class="btn btn__close" data-bs-dismiss="modal">Close</button>
 
                     </form>
