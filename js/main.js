@@ -14,20 +14,46 @@ const swiper2 = new Swiper(".mySwiper2", {
 });
 
 // MAIN
-let users = []
-let userState = false
 let userNotificationList = []
+let products = [
+  {
+    title: 'Buzo Omen',
+    description: 'lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas',
+    category: 'buzos',
+    price: 200
+  },
+  {
+    title: 'Buzo HP',
+    description: 'lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas',
+    category: 'buzos',
+    price: 210
+  },
+  {
+    title: 'Remera Omen',
+    description: 'lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas',
+    category: 'remeras',
+    price: 90
+  },
+  {
+    title: 'Remera HP',
+    description: 'lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas',
+    category: 'remeras',
+    price: 100
+  },
+]
 
 
 // FORM REGISTER
 const formSingup = document.querySelector('#formSignup')
 // FORM SIGN IN
 const formSignin = document.querySelector('#formSignin')
-console.log(formSignin)
-console.log(formSingup)
 // USER METHODS
 const userMethods = document.querySelector('#menu__methods')
 const userNotification = document.querySelector('#user__notifications')
+const userMenu = document.querySelector('#user__menu')
+// STORE METHODS
+const storeInputFilter = document.querySelector('#storeInputFilter')
+const storeBody = document.querySelector('#storeBody')
 
 //EVENTOS USER
 formSingup.addEventListener('submit', (e) => {
@@ -39,6 +65,58 @@ formSignin.addEventListener('submit', (e) => {
   e.preventDefault()
   signIn()
 })
+
+// FUNCIONES USER STATE
+
+const onAuthState = () => {
+  if(userState.length === 0){
+    return
+  }
+  contentUser = `
+    <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      ${userState.username}
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a href='./index.html' class="m-0" id='btn__logOut'>Cerrar sesion</a>
+      </li>
+    </ul>
+  `
+
+  contentMenu = `
+    <h2>Products</h2>
+    <ul class="p-0 ">
+        <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCreateProduct" class="d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-shirt"></i>
+                <p class="ms-3 my-0 d-none d-lg-block">Create product</p>
+
+            </a>
+        </li>
+        <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalSignUp" class="d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p class="ms-3 my-0 d-none d-lg-block">Carrito</p>
+            </a>
+        </li>
+    </ul>
+  `
+
+  userMethods.innerHTML = contentUser;
+  userMenu.innerHTML = contentMenu;
+  const notificacion = 'Ingreso correctamente';
+  userNotification.innerHTML =`
+  <li>
+    <p class="m-0">${notificacion}</p>
+  </li>`
+  userNotificationList.push(notificacion)
+}
+
+const logOut = () => {
+  console.log('salir')
+  localStorage.removeItem('userState');
+  userState = false
+}
 
 
 // FUNCIONES USER
@@ -96,30 +174,30 @@ const signUp = () => {
   });
   if(!existe){
     users.push(newUser)
+    uploadStorageUser()
     Swal.fire({
       icon: 'success',
       title: 'Usuario creado correctamente',
       text: 'Ahora inicie sesion'
     }) 
   }
-  console.log(users)
+  
 }
 
 const signIn = () => {
   const signinName = formSignin.querySelector('#signinName').value
   const signinPassword = formSignin.querySelector('#signinPassword').value
+  const signinCheck = formSignin.querySelector('#signinCheck').checked
 
-  const user = users.map((user) => {
+  const user = users.filter((user) => {
     if(user.email === signinName){
-      return user
+      return user;
+    }else if(user.username === signinName){
+      return user;
     }
-    if(user.username === signinName){
-      return user
-    }
-
-    return false
   })
 
+  console.log(user)
   if(user[0] === false || user.length === 0){
     Swal.fire({
       icon: 'error',
@@ -138,52 +216,78 @@ const signIn = () => {
     return
   }
   userState = user[0]
+  console.log(signinCheck)
+  if(signinCheck === true){
+    localStorage.setItem('userState', JSON.stringify(userState))
+  }
   Swal.fire({
     icon: 'success',
     title: 'Sesion iniciada',
     text: 'Tus datos no seran compartidos a nadie'
   })
-  
   console.log(userState)
   onAuthState()
 }
 
+// FUNCIONES STORAGE
 
-const onAuthState = () => {
-  if(!userState){
-    console.log('no hay sesion')
-    return;
+const getStorage = (name) => {
+  let storage = localStorage.getItem(name)
+  if(!storage){
+    return []
   }
-
-
-
-  // content = `
-  // <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  //   ${userState.username}
-  // </button>
-  // <ul class="dropdown-menu">
-  //   <li>
-  //       <a href='#' class="m-0 ">Ver Perfil</a>
-  //   </li>
-  // </ul>
-  // `
-
-  // userMethods.innerHTML = content
-  // const notificacion = 'Ingreso correctamente'
-  // userNotification.innerHTML +=`
-  // <li>
-  //   <p class="m-0">${notificacion}</p>
-  // </li>`
-  // userNotificationList.push(notificacion)
+  return JSON.parse(storage)
 }
 
-const createUser = () => {
+const uploadStorageUser = () => {
+  let storage = localStorage.getItem('users')
+  if(!storage){
+    localStorage.setItem('users', JSON.stringify(users))
+    return;
+  }
   localStorage.setItem('users', JSON.stringify(users))
 }
 
-let cart = localStorage.getItem('users')
-if(!cart){
-  createUser()
-}else{
-  console.log('si exites')
+// FUNIONES STORE
+const writeProducts = () => {
+  
+  for(let product of products){
+    const content = `
+    <a href="#" class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${product.title}</h5>
+          <p class="card-text">$${product.price}</p>
+        </div>
+        <div class="card-footer">
+          <small>Category <span>${product.category}</span></small>
+        </div>
+      </div>
+    </a>
+    
+    `
+    storeBody.innerHTML += content
+
+  }
+
+
+}
+
+// VARIABLES GLOBALES
+
+let users = getStorage('users')
+let userState = getStorage('userState')
+let storageProducts = getStorage('products')
+console.log(storageProducts)
+onAuthState()
+writeProducts()
+
+
+if(userState.length !== 0){
+  const btnLogout = document.querySelector('#btn__logOut')
+  console.log(btnLogout)
+  btnLogout.addEventListener('click', (e) => {
+    logOut()
+  })
 }

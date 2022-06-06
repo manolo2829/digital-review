@@ -1,5 +1,68 @@
 @import '../base/base';
 
 #pills-store{
+    .store__filter{
+        margin: $m-4 0;
+        button{
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            background-color: $color-grayBlack;
+            border: none;
+            i{
+                color: $color-gray;
+            }
+        }
+        ul{
+            background-color: $color-grayBlack;
+            li{
+                a{
+                    color: $color-gray;
+                }
+                
+            }
+        }
+        input{
+            background-color: $color-grayBlack;
+            border: none;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            margin: $p-4 $p-2;
+            max-width: 500px;
+            color: $color-gray;
+        }
+    }
 
-}
+    .store__body{
+        margin: $m-2 0;
+        a{
+            margin-bottom: $m-3;
+            text-decoration: none;
+            .card{
+                background-color: $color-grayBlack;
+                transition: all .5s;
+
+                div{
+                    h5{
+                        color: $color-gray;
+                        font-size: $h5-font-size;
+                    }
+                    p{
+                        color: rgb(0, 153, 0);
+                    }
+                    small{
+                        color: $color-gray;
+                        font-weight: 100;
+
+                        span{
+                            color: $color-blue;
+                        }
+                    }
+                }
+
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+} 

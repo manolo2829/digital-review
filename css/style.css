@@ -551,6 +551,146 @@ body .container-lg .model__container .model__menu h2 {
   color: #808191;
 }
 
+body .container-lg .model__container .model__menu::-webkit-scrollbar, body .container-lg .model__container .model__body::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+body .container-lg .model__container .model__menu::-webkit-scrollbar:vertical, body .container-lg .model__container .model__body::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+body .container-lg .model__container .model__menu::-webkit-scrollbar-button:increment, body .container-lg .model__container .model__body::-webkit-scrollbar-button:increment {
+  display: none;
+}
+body .container-lg .model__container .model__menu::-webkit-scrollbar-button, body .container-lg .model__container .model__body::-webkit-scrollbar-button {
+  display: none;
+}
+body .container-lg .model__container .model__menu::-webkit-scrollbar:horizontal, body .container-lg .model__container .model__body::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+body .container-lg .model__container .model__menu::-webkit-scrollbar-thumb, body .container-lg .model__container .model__body::-webkit-scrollbar-thumb {
+  background-color: #181722;
+  border-radius: 20px;
+}
+body .container-lg .model__container .model__menu::-webkit-scrollbar-track, body .container-lg .model__container .model__body::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar {
+  -webkit-appearance: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar:vertical, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar-button:increment, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar-button:increment {
+  display: none;
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar-button, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar-button {
+  display: none;
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar:horizontal, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar-thumb, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar-thumb {
+  background-color: #181722;
+  border-radius: 20px;
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul::-webkit-scrollbar-track, body .container-lg .model__container .model__body .body__menu div .menu__user ul::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+body .container-lg .model__container .model__menu ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#pills-home .home__header .home__header__slider .swiper .swiper-wrapper .swiper-slide:nth-child(4) h4 {
+  text-shadow: 16px 22px 11px rgba(0, 0, 0, 0.8);
+}
+
+#pills-home .home__header .home__header__slider .swiper .swiper-wrapper .swiper-slide:nth-child(1) h4 {
+  text-shadow: 20px 10px 0px #ff5900, -15px -6px 0px #4bb1cd;
+}
+
+#pills-home .home__header .home__header__slider .swiper .swiper-wrapper .swiper-slide:nth-child(2) {
+  color: #fff;
+  background: #000;
+  text-shadow: 0px -1px 4px white, 0px -2px 10px yellow, 0px -10px 20px #ff8000, 0px -18px 40px red;
+}
+
+#pills-home .home__header .home__header__slider .swiper .swiper-wrapper .swiper-slide:nth-child(3) h4 {
+  text-shadow: -5px 5px 0px #61bdd6, -10px 10px 0px #398da4, -15px 15px 0px #1983a1;
+}
+
+#pills-home .home__header .home__header__slider .swiper .swiper-wrapper .swiper-slide:nth-child(5) h4 {
+  text-shadow: 0 2px 1px #6d9ca0, -1px 3px 1px #7594ad, -2px 5px 1px #1b6572;
+}
+
+body .container-lg .model__container .model__menu h2 {
+  font-size: 1rem;
+}
+@media (min-width: 992px) {
+  body .container-lg .model__container .model__menu h2 {
+    font-size: 1.25rem;
+  }
+}
+
+#pills-store .store__filter {
+  margin: 1.5rem 0;
+}
+#pills-store .store__filter button {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: #353340;
+  border: none;
+}
+#pills-store .store__filter button i {
+  color: #808191;
+}
+#pills-store .store__filter ul {
+  background-color: #353340;
+}
+#pills-store .store__filter ul li a {
+  color: #808191;
+}
+#pills-store .store__filter input {
+  background-color: #353340;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin: 1.5rem 0.5rem;
+  max-width: 500px;
+  color: #808191;
+}
+#pills-store .store__body {
+  margin: 0.5rem 0;
+}
+#pills-store .store__body a {
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+#pills-store .store__body a .card {
+  background-color: #353340;
+  transition: all 0.5s;
+}
+#pills-store .store__body a .card div h5 {
+  color: #808191;
+  font-size: 1.25rem;
+}
+#pills-store .store__body a .card div p {
+  color: rgb(0, 153, 0);
+}
+#pills-store .store__body a .card div small {
+  color: #808191;
+  font-weight: 100;
+}
+#pills-store .store__body a .card div small span {
+  color: #4bb1cd;
+}
+#pills-store .store__body a .card:hover {
+  transform: scale(1.05);
+}
+
 * {
   margin: 0;
   padding: 0;
