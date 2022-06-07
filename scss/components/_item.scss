@@ -1,0 +1,98 @@
+@import '../base/base';
+
+#modalItem{
+    .modal-content{
+        .modal-header{
+            button{
+                background-color: $color-gray;
+            }
+        }
+
+        .modal-body{
+            @media (min-width: 992px) {
+                padding: 0 $p-5 ;
+            }
+            @extend %scrollBar;
+
+            .modal__header{
+                margin: $m-4 0;
+                h6{
+                    color: $color-gray;
+                    text-align: center;
+                    font-size: $h4-font-size;
+                }
+            }
+
+            .modal__body{
+
+                img{
+                    width: 100%;
+                    margin-bottom: $m-3;
+                    border-radius: 20px;
+                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                    max-height: 450px;
+                    object-fit: cover;
+                }
+
+                p{
+                    color: $color-gray;
+                    font-size: $h6-font-size;
+
+                    @media (min-width: 992px) {
+                        font-size: $h5-font-size;
+                    }
+                }
+
+                .modal__bottom{
+                    .category{
+                        span{
+                            color: $color-blue;
+                        }
+                    }
+    
+                    .price{
+                        color: green;
+                    }
+
+                }
+
+                .modal__footer{
+                    flex-direction: column;
+                    input{
+                        height: 30px;
+                        color: $color-gray;
+                        border-radius: 10px;
+
+                    }
+
+                    .modal__button__container{
+
+                        button{
+                            height: 30px;
+                            margin-top: $m-3;
+                            border-radius: 10px;
+                            background-color: $color-grayBlack;
+                            color: $color-gray;
+    
+                            &:hover{
+                                background-color: $color-blue;
+                                color: #fff;
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .modal__comments{
+                margin: $m-5 0;
+                text-align: center;
+                h6{
+                    color: $color-blue;
+                }
+            }
+        }
+    }
+}

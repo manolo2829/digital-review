@@ -26,20 +26,20 @@
                     <h2>Menu</h2>
                     <ul class="p-0" role="tablist">
                         <li>
-                            <a href="#home" type="button" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" class="active d-flex justify-content-center align-items-center">
+                            <a href="#" type="button" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" class="active d-flex justify-content-center align-items-center">
                                 <i class="fa-solid fa-house"></i>
                                 <p class="ms-3 my-0 d-none d-lg-block">Home</p>
                             </a>
                         </li>
                         <li>
-                            <a href="./store.html" id="pills-store-tab" data-bs-toggle="pill" data-bs-target="#pills-store" type="button" role="tab" aria-controls="pills-store" aria-selected="false" data-toggle="tab" class="d-flex justify-content-center align-items-center">
+                            <a href="#" id="pills-store-tab" data-bs-toggle="pill" data-bs-target="#pills-store" type="button" role="tab" aria-controls="pills-store" aria-selected="false" data-toggle="tab" class="d-flex justify-content-center align-items-center">
                                 <i class="fa-solid fa-store"></i>
                                 <p class="ms-3 my-0 d-none d-lg-block">Store</p>
 
                             </a>
                         </li>
                         <li>
-                            <a href="#tutorials" id="pills-tutorials-tab" data-bs-toggle="pill" data-bs-target="#pills-tutorials" type="button" role="tab" aria-controls="pills-tutorials" aria-selected="false" data-toggle="tab" class="d-flex justify-content-center align-items-center">
+                            <a href="#" id="pills-tutorials-tab" data-bs-toggle="pill" data-bs-target="#pills-tutorials" type="button" role="tab" aria-controls="pills-tutorials" aria-selected="false" data-toggle="tab" class="d-flex justify-content-center align-items-center">
                                 <i class="fa-solid fa-video"></i>
                                 <p class="ms-3 my-0 d-none d-lg-block">Tutorials</p>
                             </a>
@@ -292,6 +292,7 @@
 
                     <!-- TUTORIALS -->
                     <div class="tab-pane fade" id="pills-tutorials" role="tabpanel" aria-labelledby="pills-tutorials-tab" tabindex="0">Tutorials</div>
+
                 </div>
 
             </div>
@@ -401,6 +402,96 @@
                         <button type="button" class="btn btn__close" data-bs-dismiss="modal">Close</button>
 
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Carrito -->
+    <div class="modal fade" id="modalCarrito" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Carrito</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalCarritoList">
+                    <table class="table text-light">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Precio/u</th>
+                                <th scope="col">Precio total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalItem" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal__header">
+                        <h6 id="modal__title">Buzo HP OMEN</h6>
+                    </div>
+                    <div class="row modal__body justify-content-center align-items-center">
+                        <div class="col-12 row justify-content-center align-items-center">
+                            <img class="p-0" src="./img/img1.png" alt="">
+                        </div>
+                        <div class="col-12">
+                            <p id="modal__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam officia molestias, dicta corporis nemo quidem. Sequi voluptas illum nesciunt, fugit iure quo veritatis et amet! Eum molestiae rem iusto asperiores.</p>
+                        </div>
+
+                        <div class="col-12 modal__bottom">
+                            <p class="category">
+                                Categoria: <span id="modal__category">Buzos</span>
+                            </p>
+
+                            <p class="price" id="modal__price">$100</p>
+                        </div>
+
+                        <div class="row justify-content-center align-items-start modal__footer">
+                            <div class="p-0 col-lg-4">
+                                <label for="cantidadItems" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" value="1" id="cantidadItems">
+                            </div>
+                            <div class="p-0 col-lg-4 modal__button__container">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal__comments">
+                        <h6>En desarrollo</h6>
+                    </div>
+
                 </div>
             </div>
         </div>

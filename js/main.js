@@ -57,6 +57,11 @@ const userMenu = document.querySelector('#user__menu')
 const storeInputFilter = document.querySelector('#storeInputFilter')
 const storeBody = document.querySelector('#storeBody')
 const productCategoryFilter = document.querySelector('#productCategoryFilter')
+// ITEM METHOD
+const modalItem = document.querySelector('#modalItem')
+const modalCarrito = document.querySelector('#modalCarritoList')
+
+
 
 //EVENTOS USER
 formSingup.addEventListener('submit', (e) => {
@@ -73,6 +78,7 @@ formCreateProduct.addEventListener('submit', (e) => {
   e.preventDefault()
   addProduct()
 })
+
 
 
 // FUNCIONES USER STATE
@@ -103,7 +109,7 @@ const onAuthState = () => {
             </a>
         </li>
         <li>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#modalSignUp" class="d-flex justify-content-center align-items-center">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCarrito" class="d-flex justify-content-center align-items-center">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <p class="ms-3 my-0 d-none d-lg-block">Carrito</p>
             </a>
@@ -282,32 +288,110 @@ const filtrar = () => {
   const categoria = productCategoryFilter.value.toLowerCase()
 
   for( let product of storageProducts){
-      let title = product.title.toLowerCase();
-      let category = product.category.toLowerCase();
+    let title = product.title.toLowerCase();
+    let category = product.category.toLowerCase();
 
-      if(title.indexOf(texto || categoria) !== -1 || category.indexOf(texto || categoria) !== -1){
-        const content = `
-        <a href="#" class="col-12 col-md-6 col-lg-3">
-          <div class="card">
-            <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">${product.title}</h5>
-              <p class="card-text">$${product.price}</p>
-            </div>
-            <div class="card-footer">
-              <small>Category <span>${product.category}</span></small>
-            </div>
+    if(title.indexOf(texto || categoria) !== -1 || category.indexOf(texto || categoria) !== -1){
+      const content = `
+      <a href="#" class="col-12 col-md-6 col-lg-3 item__key" data-bs-target='#modalItem' data-bs-toggle='modal' data-id='${storageProducts.indexOf(product)}'>
+        <div class="card">
+          <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${product.title}</h5>
+            <p class="card-text">$${product.price}</p>
           </div>
-        </a>
-        `
-        storeBody.innerHTML += content;
-      }
-
+          <div class="card-footer">
+            <small>Category <span>${product.category}</span></small>
+          </div>
+        </div>
+      </a>
+      `
+      storeBody.innerHTML += content
+    }
   }
-
+  const itemList  = storeBody.querySelectorAll('.item__key')
+  itemList.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id
+      openItem(id)
+    })
+  })
   if(storeBody.innerHTML === ''){
       storeBody.innerHTML += `<h6 class='text__not__found'>Producto no encontrado</h6>`
+  } 
+
+
+}
+
+const openItem = (e) => {
+  // title: 'Remera HP',
+  // description: 'lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas',
+  // category: 'remeras',
+  // price: 100 
+
+  const { title, description, category, price } = storageProducts[e];
+
+  const modalFooterContainer = modalItem.querySelector('.modal__button__container')
+  modalFooterContainer.innerHTML = ''
+
+  modalItem.querySelector('#modal__title').innerHTML = title
+
+  modalItem.querySelector('#modal__description').innerHTML = description
+
+  modalItem.querySelector('#modal__category').innerHTML = category
+
+  modalItem.querySelector('#modal__price').innerHTML = price
+
+  let button = document.createElement('button')
+  button.classList.add('btn__addCarrito')
+  button.classList.add('w-100')
+  button.textContent ='Añadir al carrito'
+  modalFooterContainer.appendChild(button)
+
+  let cantidadItems = modalItem.querySelector('#cantidadItems')
+  cantidadItems.addEventListener('change', ()=> {
+    cantidadItems = modalItem.querySelector('#cantidadItems')
+  })
+ 
+  button.addEventListener('click', () => {
+    addItemCarrito(e, cantidadItems.value)
+  })
+
+}
+
+
+// FUNCIONES CARRITO 
+
+const addItemCarrito = (id, cantidad) => {
+  const newCarritoItem ={
+    id: id,
+    cantidad: cantidad
   }
+  let existe = false
+
+  userState.carrito.forEach(item => {
+    if(item.id === newCarritoItem.id){
+      item.cantidad = parseInt(item.cantidad) + parseInt(cantidad)
+      console.log(parseInt(item.cantidad), parseInt(cantidad))
+      existe = true
+      return
+    }
+  })
+
+  if(!existe){
+    console.log('agregando')
+    userState.carrito.push(newCarritoItem)
+  }
+
+  console.log(userState.carrito)
+  localStorage.setItem('userState', JSON.stringify(userState))
+  
+}
+
+const writeCarrito = () => {
+  const carrito = userState.carrito
+
+  
 }
 
 const addProduct = () => {
