@@ -379,11 +379,9 @@ const addItemCarrito = (title, cantidad, price) => {
   })
 
   if(!existe){
-    console.log('agregando')
     userState.carrito.push(newCarritoItem)
   }
 
-  console.log(userState.carrito)
   localStorage.setItem('userState', JSON.stringify(userState))
   writeCarrito()
   
@@ -394,17 +392,15 @@ const writeCarrito = () => {
   const carrito = userState.carrito
   const carritoContainer = document.querySelector('#modalCarritoItemList')
   carritoContainer.innerHTML = ''
-  console.log(carritoContainer)
 
-  if(carrito.length !== 0){
+  if(carrito?.length !== 0){
     carrito.forEach(item => {
 
       const {title, cantidad, price} = item
-      console.log(title, cantidad, price)
       content = `
       <tr>
         <td>${title}</td>
-        <td><input type="number" value="${cantidad}"></td>
+        <td><input type="number" class='input__cantidad' data-id='${carrito.indexOf(item)}' value="${cantidad}"></td>
         <td>${price}</td>
         <td>${cantidad * price}</td>
         <td>
@@ -416,6 +412,19 @@ const writeCarrito = () => {
       `
 
       carritoContainer.innerHTML += content;
+
+      const btnGroup = carritoContainer.querySelectorAll('.btn__deleteItem')
+      btnGroup.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id
+          const newCarrito = userState.carrito.filter((e)=> {return e !== userState.carrito[id]})
+          userState.carrito = newCarrito;
+          localStorage.setItem('userState', JSON.stringify(userState))
+          writeCarrito()
+        })
+
+      })
+
     })
   }
 }
@@ -477,5 +486,7 @@ if(userState.length !== 0){
     logOut()
   })
   writeCarrito()
+
+
 
 }
