@@ -59,7 +59,6 @@ const storeBody = document.querySelector('#storeBody')
 const productCategoryFilter = document.querySelector('#productCategoryFilter')
 // ITEM METHOD
 const modalItem = document.querySelector('#modalItem')
-const modalCarrito = document.querySelector('#modalCarritoList')
 
 
 
@@ -354,7 +353,7 @@ const openItem = (e) => {
   })
  
   button.addEventListener('click', () => {
-    addItemCarrito(e, cantidadItems.value)
+    addItemCarrito(title, cantidadItems.value, price)
   })
 
 }
@@ -362,15 +361,16 @@ const openItem = (e) => {
 
 // FUNCIONES CARRITO 
 
-const addItemCarrito = (id, cantidad) => {
+const addItemCarrito = (title, cantidad, price) => {
   const newCarritoItem ={
-    id: id,
-    cantidad: cantidad
+    title: title,
+    cantidad: parseInt(cantidad),
+    price: price
   }
   let existe = false
 
   userState.carrito.forEach(item => {
-    if(item.id === newCarritoItem.id){
+    if(item.title === newCarritoItem.title){
       item.cantidad = parseInt(item.cantidad) + parseInt(cantidad)
       console.log(parseInt(item.cantidad), parseInt(cantidad))
       existe = true
@@ -385,14 +385,41 @@ const addItemCarrito = (id, cantidad) => {
 
   console.log(userState.carrito)
   localStorage.setItem('userState', JSON.stringify(userState))
+  writeCarrito()
   
 }
 
 const writeCarrito = () => {
-  const carrito = userState.carrito
 
-  
+  const carrito = userState.carrito
+  const carritoContainer = document.querySelector('#modalCarritoItemList')
+  carritoContainer.innerHTML = ''
+  console.log(carritoContainer)
+
+  if(carrito.length !== 0){
+    carrito.forEach(item => {
+
+      const {title, cantidad, price} = item
+      console.log(title, cantidad, price)
+      content = `
+      <tr>
+        <td>${title}</td>
+        <td><input type="number" value="${cantidad}"></td>
+        <td>${price}</td>
+        <td>${cantidad * price}</td>
+        <td>
+            <button class='btn__deleteItem' data-id='${carrito.indexOf(item)}'>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </td>
+      </tr>
+      `
+
+      carritoContainer.innerHTML += content;
+    })
+  }
 }
+
 
 const addProduct = () => {
   const title = formCreateProduct.querySelector('#productTitle').value
@@ -443,11 +470,12 @@ console.log(storageProducts)
 onAuthState()
 filtrar()
 
-
 if(userState.length !== 0){
   const btnLogout = document.querySelector('#btn__logOut')
   console.log(btnLogout)
   btnLogout.addEventListener('click', (e) => {
     logOut()
   })
+  writeCarrito()
+
 }

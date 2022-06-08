@@ -415,36 +415,21 @@
                     <h6 class="modal-title" id="exampleModalLabel">Carrito</h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modalCarritoList">
-                    <table class="table text-light">
+                <div class="modal-body">
+                    <table class="table" id="modalCarritoList">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Producto</th>
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio/u</th>
                                 <th scope="col">Precio total</th>
+                                <th scope="col">#</th>
+    
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
+                        </thead>  
+                        <tbody id="modalCarritoItemList">
+                                
+                        </tbody>               
                     </table>
                 </div>
             </div>
