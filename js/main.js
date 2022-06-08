@@ -392,6 +392,7 @@ const writeCarrito = () => {
   const carrito = userState.carrito
   const carritoContainer = document.querySelector('#modalCarritoItemList')
   carritoContainer.innerHTML = ''
+  console.log(carrito)
 
   if(carrito?.length !== 0){
     carrito.forEach(item => {
@@ -400,7 +401,7 @@ const writeCarrito = () => {
       content = `
       <tr>
         <td>${title}</td>
-        <td><input type="number" class='input__cantidad' data-id='${carrito.indexOf(item)}' value="${cantidad}"></td>
+        <td><input type="number" min="1" class='input__cantidad' data-id='${carrito.indexOf(item)}' value="${cantidad}"></td>
         <td>${price}</td>
         <td>${cantidad * price}</td>
         <td>
@@ -414,6 +415,8 @@ const writeCarrito = () => {
       carritoContainer.innerHTML += content;
 
       const btnGroup = carritoContainer.querySelectorAll('.btn__deleteItem')
+      const inputCantidad = carritoContainer.querySelectorAll('.input__cantidad ')
+
       btnGroup.forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.dataset.id
@@ -422,9 +425,17 @@ const writeCarrito = () => {
           localStorage.setItem('userState', JSON.stringify(userState))
           writeCarrito()
         })
-
       })
 
+      inputCantidad.forEach(btn => {
+        btn.addEventListener('change', () => {
+          const id = btn.dataset.id
+          console.log(id + ' --- ' + btn.value)
+          userState.carrito[id].cantidad = parseInt(btn.value)
+          localStorage.setItem('userState', JSON.stringify(userState))
+          writeCarrito()
+        })
+      })
     })
   }
 }
