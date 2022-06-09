@@ -391,19 +391,22 @@ const writeCarrito = () => {
 
   const carrito = userState.carrito
   const carritoContainer = document.querySelector('#modalCarritoItemList')
+  const precioTotalContainer = document.querySelector('#precioTotal')
   carritoContainer.innerHTML = ''
   console.log(carrito)
+  let precioTotal = 0
 
   if(carrito?.length !== 0){
     carrito.forEach(item => {
 
       const {title, cantidad, price} = item
+      const total = cantidad*price
       content = `
       <tr>
         <td>${title}</td>
         <td><input type="number" min="1" class='input__cantidad' data-id='${carrito.indexOf(item)}' value="${cantidad}"></td>
-        <td>${price}</td>
-        <td>${cantidad * price}</td>
+        <td>$${price}</td>
+        <td>$${total}</td>
         <td>
             <button class='btn__deleteItem' data-id='${carrito.indexOf(item)}'>
                 <i class="fa-solid fa-xmark"></i>
@@ -411,7 +414,7 @@ const writeCarrito = () => {
         </td>
       </tr>
       `
-
+      precioTotal += total
       carritoContainer.innerHTML += content;
 
       const btnGroup = carritoContainer.querySelectorAll('.btn__deleteItem')
@@ -437,6 +440,7 @@ const writeCarrito = () => {
         })
       })
     })
+    precioTotalContainer.innerHTML = `$${precioTotal}`
   }
 }
 
