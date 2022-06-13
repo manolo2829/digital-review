@@ -353,12 +353,16 @@ body .modal .modal-content button {
   color: #fff;
 }
 body .modal .modal-content button.btn__close {
-  background-color: rgb(198, 0, 0);
+  background-color: #c60000;
   color: #fff;
 }
 body .modal .modal-content button:nth-child(2) {
   background-color: #353340;
   color: #808191;
+}
+body .modal .modal-content button.btn__buy {
+  background-color: #007500;
+  color: #fff;
 }
 
 #modalItem .modal-content .modal-body::-webkit-scrollbar, body .container-lg .model__container .model__menu::-webkit-scrollbar, body .container-lg .model__container .model__body::-webkit-scrollbar {
@@ -688,7 +692,7 @@ body .container-lg .model__container .model__menu h2 {
   font-size: 1.25rem;
 }
 #pills-store .store__body a .card div p {
-  color: rgb(0, 153, 0);
+  color: #009900;
 }
 #pills-store .store__body a .card div small {
   color: #808191;
@@ -940,21 +944,21 @@ body .container-lg .model__container .model__menu h2 {
   }
 }
 
-#modalCarritoList {
+#modalCarrito #modalCarritoList {
   width: 100%;
 }
-#modalCarritoList tr th {
+#modalCarrito #modalCarritoList tr th {
   color: #fff;
   font-weight: normal;
 }
-#modalCarritoList tr td {
+#modalCarrito #modalCarritoList tr td {
   color: #808191;
 }
-#modalCarritoList tr td input {
+#modalCarrito #modalCarritoList tr td input {
   width: 50px;
 }
-#modalCarritoList tr td button {
-  background-color: rgb(205, 0, 0);
+#modalCarrito #modalCarritoList tr td button {
+  background-color: #cd0000;
   padding: 3px 8px;
   border-radius: 8px;
 }

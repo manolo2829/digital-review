@@ -433,6 +433,10 @@
                         <th scope="col">Total:</th>    
                         <td id="precioTotal"></td>          
                     </table>
+                    <div id="btnCarritoContainer" class="row p-3">
+                        <button id="btnCarritoDelete" class="col-3 btn btn__close">Eliminar carrito</button>
+                        <button id="btnCarritoBuy" data-bs-toggle="modal" data-bs-target="#modalBuyCarrito" class="col-3 btn btn__buy">Comprar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -479,6 +483,21 @@
                         <h6>En desarrollo</h6>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal buy carrito -->
+    <div class="modal fade" id="modalBuyCarrito" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Comprar</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>comprar</h4>
                 </div>
             </div>
         </div>
