@@ -106,6 +106,11 @@ const getStorage = (name) => {
   return JSON.parse(storage)
 }
 
+const uploadStorage = (to, data) => {
+  localStorage.setItem(to, JSON.stringify(data))
+}
+
+
 
 // FUNCIONES USER
 const signUp = () => {
@@ -119,7 +124,7 @@ const signUp = () => {
     )
     return;
   }
-  if(password !== password2){
+  if(password.value !== password2.value){
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -129,24 +134,80 @@ const signUp = () => {
   }
 
   const newUser = {
-    email: signupEmail,
-    username: signupUsername,
-    password: signupPassword,
+    email: email.value,
+    username: username.value,
+    password: password.value,
     saldo: 0,
     carrito: []
   }
-
+  let exist = false
   users.forEach(function(user) {
-    if(user.email === newUser.email){
-      Swal.fire({
-          icon: 'warning',
-          title: 'Ese email ya esta en uso',
-          text: 'Pruebe con otro'
-      })
-      existe = true
-      return;
+    exist = user.email === newUser.email && true;
+    exist = user.username === newUser.username && true;
+    console.log(exist)
+  });
+
+  if(!exist){
+    users.push(newUser)
+    uploadStorage('users', users)
+    Swal.fire({
+      icon: 'success',
+      title: 'Usuario creado correctamente',
+      text: 'Ahora inicie sesion'
+    }) 
+  }else{
+    Swal.fire({
+      icon: 'warning',
+      title: 'Ese nombre ya esta en uso',
+      text: 'Pruebe con otro'
+    })
+  }
+
+}
+
+const signIn = () => {
+  const values = formSignin.getElementsByTagName('input');
+  const [name, password, check] = values;
+  const user = users.filter((user) => {
+    if(user.email === name.value || user.username === password.value){
+      return user;
     }
   })
+
+  console.log(user)
+
+  if(user[0] === false || user.length === 0){
+    Swal.fire({
+      icon: 'error',
+      title: 'Usuario no encontrado',
+      text: 'Revise los campos'
+    })
+    return
+  }
+
+  if(user[0].password !== password.value){
+    Swal.fire({
+      icon: 'error',
+      title: 'La contraseña del usuario: ' + user[0].username,
+      text: 'Es incorrecta'
+    })
+    return
+  }
+  console.log(user[0])
+  userState = user[0]
+  if(check.checked === true){
+    uploadStorage('userState', userState)
+  }
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Sesion iniciada',
+    text: 'Tus datos no seran compartidos a nadie'
+  })
+
+  console.log(userState)
+
+  
 }
 
 
