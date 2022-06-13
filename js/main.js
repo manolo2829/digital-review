@@ -148,7 +148,7 @@ const signUp = () => {
   });
 
   if(!exist){
-    users.push(newUser)
+    users = [...users, newUser]
     uploadStorage('users', users)
     Swal.fire({
       icon: 'success',
@@ -169,12 +169,10 @@ const signIn = () => {
   const values = formSignin.getElementsByTagName('input');
   const [name, password, check] = values;
   const user = users.filter((user) => {
-    if(user.email === name.value || user.username === password.value){
+    if(user.email === name.value || user.username === name.value){
       return user;
     }
   })
-
-  console.log(user)
 
   if(user[0] === false || user.length === 0){
     Swal.fire({
@@ -193,7 +191,6 @@ const signIn = () => {
     })
     return
   }
-  console.log(user[0])
   userState = user[0]
   if(check.checked === true){
     uploadStorage('userState', userState)
@@ -206,8 +203,6 @@ const signIn = () => {
   })
 
   console.log(userState)
-
-  
 }
 
 
