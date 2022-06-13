@@ -229,7 +229,7 @@ const onAuthState = () => {
     </button>
     <ul class="dropdown-menu">
       <li>
-        <a href='./index.html' class="m-0" id='btn__logOut'>Cerrar sesion</a>
+        <a href='#' class="m-0" id='btn__logOut'>Cerrar sesion</a>
       </li>
     </ul>
   `
@@ -250,9 +250,15 @@ const onAuthState = () => {
             </a>
         </li>
     </ul>
-  `
+  `  
   userMethods.innerHTML = contentUser;
   userMenu.innerHTML = contentMenu;
+
+  const btnLogout = document.querySelector('#btn__logOut')
+  btnLogout.addEventListener('click', (e) => {
+    logOut()
+  })
+
   }
 
 }
@@ -260,7 +266,29 @@ const onAuthState = () => {
 
 // CERRAR SESION
 const logOut = () => {
-  console.log('cerrar')
+  Swal.fire({
+    title: '¿Cerrar sesion?',
+    showCancelButton: true,
+    confirmButtonText: 'confirmar'
+    }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      localStorage.removeItem('userState');
+      userState = false
+      Swal.fire({
+        icon: 'success',
+        title: 'Tu sesion se cerro correctamente',
+        timer: 1500,
+        showConfirmButton: false
+
+      })
+      setTimeout( () => {
+        window.location.reload()
+
+      }, 1500)
+
+    }
+  })
 }
 
 
@@ -269,4 +297,7 @@ const logOut = () => {
 let users = getStorage('users')
 let userState = getStorage('userState')
 let storageProducts = getStorage('products').length === 0 ? products : getStorage('products')
+
+// ESCRIBIENDO LA APLICACION
+onAuthState()
 
