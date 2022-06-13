@@ -113,6 +113,8 @@ const uploadStorage = (to, data) => {
 
 
 // FUNCIONES USER
+
+// FUNCION REGISTRARSE
 const signUp = () => {
   const values = formSingup.getElementsByTagName('input')
   const [email, username, password, password2] = values
@@ -165,6 +167,7 @@ const signUp = () => {
 
 }
 
+// FUNCION INICIAR SESION
 const signIn = () => {
   const values = formSignin.getElementsByTagName('input');
   const [name, password, check] = values;
@@ -203,6 +206,61 @@ const signIn = () => {
   })
 
   console.log(userState)
+  onAuthState()
+}
+
+// FUNCIONES ESTADO DEL USUARIO
+
+
+// ESTABLECER ESTADO
+const onAuthState = () => {
+
+  const notificacion = userState.length !== 0 ? 'Ingreso correctamente' : 'Para tener mas funciones incicie sesion';
+  userNotification.innerHTML =`
+  <li>
+    <p class="m-0">${notificacion}</p>
+  </li>`
+  userNotificationList.push(notificacion)
+
+  if(userState.length !== 0){
+    const contentUser = `
+    <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      ${userState.username}
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a href='./index.html' class="m-0" id='btn__logOut'>Cerrar sesion</a>
+      </li>
+    </ul>
+  `
+
+  const contentMenu = `
+    <h2>Products</h2>
+    <ul class="p-0 ">
+        <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCreateProduct" class="d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-shirt"></i>
+                <p class="ms-3 my-0 d-none d-lg-block">Create product</p>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalCarrito" class="d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p class="ms-3 my-0 d-none d-lg-block">Carrito</p>
+            </a>
+        </li>
+    </ul>
+  `
+  userMethods.innerHTML = contentUser;
+  userMenu.innerHTML = contentMenu;
+  }
+
+}
+
+
+// CERRAR SESION
+const logOut = () => {
+  console.log('cerrar')
 }
 
 
