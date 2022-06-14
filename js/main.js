@@ -94,6 +94,22 @@ formCreateProduct.addEventListener('submit', (e) => {
 })
 
 
+// EVENTOS FILTRAR PRODUCTOS
+
+
+//EVENTO FILTRAR POR BUSQUEDA
+storeInputFilter.addEventListener('keyup', () => {
+  productCategoryFilter.value = ''
+  writeProducts()
+})
+
+
+// EVENTO FILTRAR POR CATEGORIA
+productCategoryFilter.addEventListener('change', () => {
+  storeInputFilter.value = ''
+  writeProducts()
+})
+
 // FUNCIONES
 
 
@@ -214,14 +230,6 @@ const signIn = () => {
 
 // ESTABLECER ESTADO
 const onAuthState = () => {
-
-  const notificacion = userState.length !== 0 ? 'Ingreso correctamente' : 'Para tener mas funciones incicie sesion';
-  userNotification.innerHTML =`
-  <li>
-    <p class="m-0">${notificacion}</p>
-  </li>`
-  userNotificationList.push(notificacion)
-
   if(userState.length !== 0){
     const contentUser = `
     <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -232,9 +240,9 @@ const onAuthState = () => {
         <a href='#' class="m-0" id='btn__logOut'>Cerrar sesion</a>
       </li>
     </ul>
-  `
+    `
 
-  const contentMenu = `
+    const contentMenu = `
     <h2>Products</h2>
     <ul class="p-0 ">
         <li>
@@ -250,14 +258,14 @@ const onAuthState = () => {
             </a>
         </li>
     </ul>
-  `  
-  userMethods.innerHTML = contentUser;
-  userMenu.innerHTML = contentMenu;
+    `  
+    userMethods.innerHTML = contentUser;
+    userMenu.innerHTML = contentMenu;
 
-  const btnLogout = document.querySelector('#btn__logOut')
-  btnLogout.addEventListener('click', (e) => {
-    logOut()
-  })
+    const btnLogout = document.querySelector('#btn__logOut')
+    btnLogout.addEventListener('click', (e) => {
+      logOut()
+    })
 
   }
 
@@ -277,7 +285,6 @@ const logOut = () => {
       userState = false
       Swal.fire({
         icon: 'success',
-        title: 'Tu sesion se cerro correctamente',
         timer: 1500,
         showConfirmButton: false
 
@@ -291,6 +298,213 @@ const logOut = () => {
   })
 }
 
+// FUNCIONES STORE
+
+
+// ESCRIBIR PRODUCTOS EN EL STORE
+const writeProducts = () => {
+  storeBody.innerHTML = '';
+  const texto = storeInputFilter.value.toLowerCase();
+  const categoria = productCategoryFilter.value.toLowerCase()
+
+  for( let product of storageProducts){
+    let title = product.title.toLowerCase();
+    let category = product.category.toLowerCase();
+
+    if(title.indexOf(texto || categoria) !== -1 || category.indexOf(texto || categoria) !== -1){
+      const content = `
+      <a href="#" class="col-12 col-md-6 col-lg-3 item__key" data-bs-target='#modalItem' data-bs-toggle='modal' data-id='${storageProducts.indexOf(product)}'>
+        <div class="card">
+          <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${product.title}</h5>
+            <p class="card-text">$${product.price}</p>
+          </div>
+          <div class="card-footer">
+            <small>Category <span>${product.category}</span></small>
+          </div>
+        </div>
+      </a>
+      `
+      storeBody.innerHTML += content
+    }
+  }
+
+  const itemList  = storeBody.querySelectorAll('.item__key')
+  itemList.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id
+      openItem(id)
+    })
+  })
+  if(storeBody.innerHTML === ''){
+      storeBody.innerHTML += `<h6 class='text__not__found'>Producto no encontrado</h6>`
+  } 
+}
+
+
+// AÑADIR PRODUCTO AL STORE
+const addProduct = () => {
+  const values = formCreateProduct.getElementsByTagName('input')
+  const [title, description, price] = values
+  console.log(values)
+  const category = formCreateProduct.querySelector('#productCategory').value
+
+  if(!title.value || !description.value || !price.value || !category){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Campos vacios',
+      text: 'Debe llenar todos los campos con informacion valida'
+    })
+    return;
+  }
+
+  const newProduct = {
+    title: title.value,
+    description: description.value,
+    category: category,
+    price: price.value
+  }
+  
+  storageProducts = [...storageProducts, newProduct]
+  uploadStorage('products', storageProducts)
+  storageProducts = getStorage('products')
+  console.log(storageProducts)
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Productos subido exitosamente'
+  })
+
+}
+
+
+// ABRIR VENTANA ITEM
+const openItem = (e) => {
+  const { title, description, category, price } = storageProducts[e];
+
+  const modalFooterContainer = modalItem.querySelector('.modal__button__container')
+
+  modalFooterContainer.innerHTML = ''
+
+  modalItem.querySelector('#modal__title').innerHTML = title
+  modalItem.querySelector('#modal__description').innerHTML = description
+  modalItem.querySelector('#modal__category').innerHTML = category
+  modalItem.querySelector('#modal__price').innerHTML = price
+
+  let button = document.createElement('button')
+  button.classList.add('btn__addCarrito')
+  button.classList.add('w-100')
+  button.textContent ='Añadir al carrito'
+
+  modalFooterContainer.appendChild(button)
+
+  let cantidadItems = modalItem.querySelector('#cantidadItems')
+  cantidadItems.addEventListener('change', ()=> {
+    cantidadItems = modalItem.querySelector('#cantidadItems')
+  })
+ 
+  button.addEventListener('click', () => {
+    addItemCarrito(title, cantidadItems.value, price)
+  })
+
+}
+
+
+// FUNCIONES CARRITO
+
+
+// FUNCION AÑADIR ITEM AL CARRITO
+const addItemCarrito = (title, cantidad, price) => {
+  const newCarritoItem ={
+    title: title,
+    cantidad: parseInt(cantidad),
+    price: price
+  }
+  let existe = false
+
+
+  userState.carrito.forEach(item => {
+
+    if(item.title === newCarritoItem.title){
+      item.cantidad = parseInt(item.cantidad) + parseInt(cantidad)
+      existe = true
+      return
+    }
+  })
+
+  if(!existe){
+    userState.carrito.push(newCarritoItem)
+  }
+  writeNotifications(`${newCarritoItem.title} agregado al carrito`)
+  uploadStorage('userState', userState)
+  writeCarrito()
+}
+
+
+
+// FUNCION ESCRIBIR CARRITO
+const writeCarrito = () => {
+  const carrito = userState.carrito
+  const carritoContainer = document.querySelector('#modalCarritoItemList')
+  const precioTotalContainer = document.querySelector('#precioTotal')
+  carritoContainer.innerHTML = ''
+  let precioTotal = 0
+  if(carrito?.length !== 0){
+    carrito.forEach(item => {
+
+      const {title, cantidad, price} = item
+      const total = cantidad*price
+      content = `
+      <tr>
+        <td>${title}</td>
+        <td><input type="number" min="1" class='input__cantidad' data-id='${carrito.indexOf(item)}' value="${cantidad}"></td>
+        <td>$${price}</td>
+        <td>$${total}</td>
+        <td>
+            <button class='btn__deleteItem' data-id='${carrito.indexOf(item)}'>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </td>
+      </tr>
+      `
+      precioTotal += total
+      carritoContainer.innerHTML += content;
+
+      const btnGroup = carritoContainer.querySelectorAll('.btn__deleteItem')
+      const inputCantidad = carritoContainer.querySelectorAll('.input__cantidad ')
+
+      btnGroup.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id
+          const newCarrito = userState.carrito.filter((e)=> {return e !== userState.carrito[id]})
+          userState.carrito = newCarrito;
+          localStorage.setItem('userState', JSON.stringify(userState))
+          writeCarrito()
+        })
+      })
+
+      inputCantidad.forEach(btn => {
+        btn.addEventListener('change', () => {
+          const id = btn.dataset.id
+          userState.carrito[id].cantidad = parseInt(btn.value)
+          localStorage.setItem('userState', JSON.stringify(userState))
+          writeCarrito()
+        })
+      })
+    })
+    precioTotalContainer.innerHTML = `$${precioTotal}`
+  }
+}
+
+// FUNCION CREAR NOTIFICACIONES
+const writeNotifications = (data) => {
+  userNotification.innerHTML +=`
+  <li>
+    <p class="m-0">${data}</p>
+  </li>`
+
+}
 
 // DATOS OBTENIDOS STORAGE
 
@@ -300,4 +514,8 @@ let storageProducts = getStorage('products').length === 0 ? products : getStorag
 
 // ESCRIBIENDO LA APLICACION
 onAuthState()
+writeProducts()
+userState.length !== 0 && writeCarrito();
+userState.length !== 0 ? writeNotifications('Ingreso correctamente') : writeNotifications('Para tener mas funciones incicie sesion');
+
 
