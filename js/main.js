@@ -77,6 +77,11 @@ const btnDeleteCarrito = carritoContainerModal.querySelector('#btnCarritoDelete'
 const btnBuyCarrito = carritoContainerModal.querySelector('#btnCarritoBuy')
 
 
+// METHOD BUY CARRITO
+const modalBuyCarrito = document.querySelector('#modalBuyCarrito')
+const buyCarritoContainer = modalBuyCarrito.querySelector('.modal-body')
+
+
 // EVENTOS
 
 // EVENTO REGISTRARSE
@@ -124,6 +129,12 @@ productCategoryFilter.addEventListener('change', () => {
 // EVENTO ELIMINAR CARRITO
 btnDeleteCarrito.addEventListener('click', () => {
   deleteCarrito()
+})
+
+
+// EVENTO COMPRAR CARRITO
+btnBuyCarrito.addEventListener('click', () => {
+
 })
 
 
@@ -392,6 +403,7 @@ const addProduct = () => {
     icon: 'success',
     title: 'Productos subido exitosamente'
   })
+  writeProducts()
 
 }
 
@@ -526,6 +538,15 @@ const deleteCarrito = () => {
   precioTotalContainer.innerHTML = '$'+0
   uploadStorage('userState', userState)  
 }
+
+
+// FUNCION COMPRAR CARRITO
+const buyCarrito = () => {
+
+
+
+}
+
 
 // FUNCION CREAR NOTIFICACIONES
 const writeNotifications = (data) => {
