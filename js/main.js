@@ -71,6 +71,12 @@ const productCategoryFilter = document.querySelector('#productCategoryFilter')
 const modalItem = document.querySelector('#modalItem')
 
 
+// CARRITO METHOD
+const carritoContainerModal = document.querySelector('#modalCarrito')
+const btnDeleteCarrito = carritoContainerModal.querySelector('#btnCarritoDelete')
+const btnBuyCarrito = carritoContainerModal.querySelector('#btnCarritoBuy')
+
+
 // EVENTOS
 
 // EVENTO REGISTRARSE
@@ -109,6 +115,17 @@ productCategoryFilter.addEventListener('change', () => {
   storeInputFilter.value = ''
   writeProducts()
 })
+
+
+
+// EVENTOS CARRITO
+
+
+// EVENTO ELIMINAR CARRITO
+btnDeleteCarrito.addEventListener('click', () => {
+  deleteCarrito()
+})
+
 
 // FUNCIONES
 
@@ -495,6 +512,19 @@ const writeCarrito = () => {
     })
     precioTotalContainer.innerHTML = `$${precioTotal}`
   }
+
+}
+
+
+// FUNCION VACIAR CARRITO 
+const deleteCarrito = () => {
+
+  userState.carrito = []
+  const listContainer = carritoContainerModal.querySelector('#modalCarritoItemList')
+  const precioTotalContainer = document.querySelector('#precioTotal')
+  listContainer.innerHTML = ''
+  precioTotalContainer.innerHTML = '$'+0
+  uploadStorage('userState', userState)  
 }
 
 // FUNCION CREAR NOTIFICACIONES
