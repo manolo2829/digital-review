@@ -140,6 +140,14 @@ btnBuyCarrito.addEventListener('click', () => {
 
 // FUNCIONES
 
+// FUNCIONES FETCH
+const getDataFetch = async() => {
+  const respuesta = await fetch('./js/data.json')
+  const data = await respuesta.json()
+  console.log(data)
+  return data
+}
+
 
 // FUNCIONES STORAGE
 const getStorage = (name) => {
@@ -343,7 +351,7 @@ const writeProducts = () => {
       const content = `
       <a href="#" class="col-12 col-md-6 col-lg-3 item__key" data-bs-target='#modalItem' data-bs-toggle='modal' data-id='${storageProducts.indexOf(product)}'>
         <div class="card">
-          <img class="w-100" src="./img/img1.png" class="card-img-top" alt="...">
+          <img class="w-100" src="${product.img}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">${product.title}</h5>
             <p class="card-text">$${product.price}</p>
@@ -387,10 +395,13 @@ const addProduct = () => {
     return;
   }
 
+  
+
   const newProduct = {
     title: title.value,
     description: description.value,
     category: category,
+    img: `./img/${category.toLowerCase()}.png`,
     price: price.value
   }
   
@@ -543,7 +554,7 @@ const deleteCarrito = () => {
 // FUNCION COMPRAR CARRITO
 const buyCarrito = () => {
 
-
+  
 
 }
 
@@ -561,12 +572,16 @@ const writeNotifications = (data) => {
 
 let users = getStorage('users')
 let userState = getStorage('userState')
-let storageProducts = getStorage('products').length === 0 ? products : getStorage('products')
-
+let storageProducts = []
 // ESCRIBIENDO LA APLICACION
+
+const getDataProducts = async() => {
+  storageProducts = await (getStorage('products').length === 0 ? getDataFetch() : getStorage('products'))
+  console.log(storageProducts)
+  writeProducts()
+}
+
+getDataProducts()
 onAuthState()
-writeProducts()
 userState.length !== 0 && writeCarrito();
 userState.length !== 0 ? writeNotifications('Ingreso correctamente') : writeNotifications('Para tener mas funciones incicie sesion');
-
-
