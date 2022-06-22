@@ -453,10 +453,10 @@
                         <h6 id="modal__title"></h6>
                     </div>
                     <div class="row modal__body justify-content-center align-items-center">
-                        <div class="col-12 row justify-content-center align-items-center">
+                        <div class="col-lg-6 col-12 row justify-content-center align-items-center">
                             <img class="p-0" src="./img/buzos.png" alt="">
                         </div>
-                        <div class="col-12">
+                        <div class="col-lg-6 col-12">
                             <p id="modal__description"></p>
                         </div>
 
@@ -490,14 +490,51 @@
 
     <!-- Modal buy carrito -->
     <div class="modal fade" id="modalBuyCarrito" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title" id="exampleModalLabel">Comprar</h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <h4>comprar</h4>
+                <div class="modal-body d-flex justify-content-center align-items-center flex-column">
+                    <div class="tarjeta active">
+                        <div class="tarjeta__delantera">
+                            <div class="row justify-content-end marca__logo" id="marcaLogo">
+                                <img src="./img/mastercard.png" alt="">
+                            </div>
+                            <img src="./img/chip-tarjeta.png" class="row tarjeta__chip" alt="">
+                            <div class="row flex-column justify-content-start align-items-center tarjeta__grupo">
+                                <p class="tarjeta__label">Numero Tarjeta</p>
+                                <p class="tarjeta__numero tarjeta__text">#### #### #### ####</p>
+                            </div>
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col tarjeta__grupo">
+                                    <p class="tarjeta__label">Nombre Tarjeta</p>
+                                    <p class="tarjeta__nombre tarjeta__text">jhon doe</p>
+                                </div>
+                                <div class="col tarjeta__grupo text-end">
+                                    <p class="tarjeta__label pe-3">Expiracion</p>
+                                    <p class="tarjeta__expiracion tarjeta__text"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tarjeta__trasera">
+                            <div class="tarjeta__barra__magnetica"></div>
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-9">
+                                    <p class="text-light">Firma</p>
+                                    <div class="tarjeta__firma">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="text-light">CCV</p>
+                                    <p class="tarjeta__ccv"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
