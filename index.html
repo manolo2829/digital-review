@@ -9,6 +9,9 @@
     <!-- SWIPER -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <!-- STYLE -->
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
@@ -497,44 +500,93 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex justify-content-center align-items-center flex-column">
-                    <div class="tarjeta active">
+                    <div class="tarjeta" id="tarjeta">
                         <div class="tarjeta__delantera">
                             <div class="row justify-content-end marca__logo" id="marcaLogo">
-                                <img src="./img/mastercard.png" alt="">
+                                <!-- <img src="./img/mastercard.png" alt=""> -->
                             </div>
                             <img src="./img/chip-tarjeta.png" class="row tarjeta__chip" alt="">
                             <div class="row flex-column justify-content-start align-items-center tarjeta__grupo">
                                 <p class="tarjeta__label">Numero Tarjeta</p>
-                                <p class="tarjeta__numero tarjeta__text">#### #### #### ####</p>
+                                <p class="tarjeta__numero tarjeta__text" id="tarjetaNumero">#### #### #### ####</p>
                             </div>
                             <div class="row justify-content-between align-items-center">
                                 <div class="col tarjeta__grupo">
                                     <p class="tarjeta__label">Nombre Tarjeta</p>
-                                    <p class="tarjeta__nombre tarjeta__text">jhon doe</p>
+                                    <p class="tarjeta__nombre tarjeta__text" id="tarjetaNombre">jhon doe</p>
                                 </div>
                                 <div class="col tarjeta__grupo text-end">
                                     <p class="tarjeta__label pe-3">Expiracion</p>
-                                    <p class="tarjeta__expiracion tarjeta__text"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                                    <p class="tarjeta__expiracion tarjeta__text" id="tarjeta__expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="tarjeta__trasera">
                             <div class="tarjeta__barra__magnetica"></div>
-                            <div class="row justify-content-between align-items-center">
+                            <div class="row tarjeta__datos justify-content-between align-items-center">
                                 <div class="col-9">
                                     <p class="text-light">Firma</p>
-                                    <div class="tarjeta__firma">
-                                        <p></p>
+                                    <div class="tarjeta__firma d-flex justify-content-start align-items-center px-3">
+                                        <p id="tarjetaFirma"></p>
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <p class="text-light">CCV</p>
-                                    <p class="tarjeta__ccv"></p>
+                                    <div class="tarjeta__ccv d-flex justify-content-center align-items-center">
+                                        <p class="m-0" id="tarjeta__ccv"></p>
+                                    </div>
+                                </div>
+                                <div class="col-12 tarjeta__texto mt-4">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus fuga ab saepe? Minima dolorem, amet corrupti, eos cumque culpa expedita</p>
+                                    <a href="#">www.tuBanco.com</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- BUTTON OPEN FORM -->
+                    <div class="btn__form__container">
+                        <button id="btn-abrir-formulario">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <form class="w-100 tarjeta__form" id="tarjeta__form">
+                        <div class="mb-3">
+                            <label for="tarjetaNumeroInput" class="form-label">Numero de tarjeta</label>
+                            <input type="text" class="form-control" id="tarjetaNumeroInput" maxlength="19" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tarjetaNombreInput" class="form-label">Titular de la tarjeta</label>
+                            <input type="text" class="form-control" id="tarjetaNombreInput" maxlength="19" autocomplete="off">
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-9">
+                                <label for="selectMes" class="form-label">Expiracion</label>
+                                <div class="row tarjeta__select px-2" id="tarjeta__select">
+                                    <select name="mes" id="selectMes" class="form-control col me-2">
+                                        <option disabled selected>Mes</option>
+                                        <!-- MESES GENERADOS CON JS -->
+                                    </select>
+
+                                    <select name="year" id="selectYear" class="form-control col">
+                                        <option disabled selected>Año</option>
+                                        <!-- MESES GENERADOS CON JS -->
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <label for="tarjetaCCVInput" class="form-label">CCV</label>
+                                <input type="text" class="form-control" id="tarjetaCCVInput" maxlength="3">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button type="submit" class="btn btn-primary">Comprar</button>
+                            <p class="text-white m-0">Total: <span class="text-success">1300$</span></p>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>

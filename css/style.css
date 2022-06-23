@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 #modalItem .modal-content .modal-body::-webkit-scrollbar, body .container-lg .model__container .model__body::-webkit-scrollbar, body .container-lg .model__container .model__menu::-webkit-scrollbar {
   -webkit-appearance: none;
 }
@@ -1039,6 +1038,90 @@ body .container-lg .model__container .model__menu h2 {
   transform: rotateY(180deg);
   /* Este estilo hace que la parte de atras del componente no se vea */
   backface-visibility: hidden;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__barra__magnetica {
+  height: 40px;
+  background-color: #000;
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos {
+  margin-top: 60px;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos p {
+  margin-bottom: 5px;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos .tarjeta__firma {
+  height: 40px;
+  background: repeating-linear-gradient(skyblue 0, skyblue 5px, orange 5px, orange 10px);
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos .tarjeta__firma p {
+  line-height: 40px;
+  font-family: "Dancing Script", cursive;
+  color: #000;
+  font-size: 30px;
+  padding: 0 10px;
+  text-transform: capitalize;
+  font-weight: lighter;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos .tarjeta__ccv {
+  background-color: #fff;
+  height: 40px;
+  color: #000;
+  padding: 10px;
+  text-align: center;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos .tarjeta__texto p {
+  font-size: 14px;
+  line-height: 24px;
+}
+#modalBuyCarrito .tarjeta .tarjeta__trasera .tarjeta__datos .tarjeta__texto a {
+  font-size: 14px;
+  color: #fff;
+}
+#modalBuyCarrito .btn__form__container button {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #2364d2;
+  line-height: 20px;
+  position: relative;
+  top: -25px;
+  z-index: 3;
+  border: none;
+  border-radius: 100%;
+  box-shadow: -5px 4px 8px rgba(24, 56, 182, 0.4);
+  padding: 5px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+#modalBuyCarrito .btn__form__container button:hover {
+  background-color: #1850b1;
+}
+#modalBuyCarrito .btn__form__container button.active {
+  transform: rotate(45deg);
+}
+#modalBuyCarrito .tarjeta__form {
+  width: 100%;
+  max-width: 700px;
+  padding: 150px 30px 30px 30px;
+  border-radius: 10px;
+  position: relative;
+  top: -150px;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: clip-path 0.3s ease-out;
+}
+#modalBuyCarrito .tarjeta__form.active {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+#modalBuyCarrito .tarjeta__form .tarjeta__select select {
+  background-color: #353340;
+  border: #1f1d2b;
+  color: #808191;
 }
 
 * {

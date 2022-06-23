@@ -82,6 +82,17 @@ const modalBuyCarrito = document.querySelector('#modalBuyCarrito')
 const buyCarritoContainer = modalBuyCarrito.querySelector('.modal-body')
 
 
+// TARJETA
+const containerTarjeta = document.querySelector('#tarjeta')
+const btnAbrirFomulario = document.querySelector('#btn-abrir-formulario')
+const formularioTarjeta = document.querySelector('#tarjeta__form')
+const logoMarca = document.querySelector('#marcaLogo')
+const mesExpiracion = document.querySelector('#tarjeta #tarjeta__expiracion .mes')
+const yearExpiracion = document.querySelector('#tarjeta #tarjeta__expiracion .year')
+const ccv = document.querySelector('#tarjeta #tarjeta__ccv')
+
+
+ 
 // EVENTOS
 
 // EVENTO REGISTRARSE
@@ -102,6 +113,56 @@ formSignin.addEventListener('submit', (e) => {
 formCreateProduct.addEventListener('submit', (e) => {
   e.preventDefault()
   addProduct()
+})
+
+
+// EVENTOS TARJETA
+
+// EVENTO ROTAR TARJETA
+containerTarjeta.addEventListener('click', (e) => {
+  tarjeta.classList.toggle('active')
+})  
+
+// EVENTO BTN FORMULARIO
+btnAbrirFomulario.addEventListener('click', () => {
+  btnAbrirFomulario.classList.toggle('active')
+  formularioTarjeta.classList.toggle('active')
+})
+
+formularioTarjeta.tarjetaNumeroInput.addEventListener('keyup', (e) => {
+  let valorInput = e.target.value;
+  numeroTarjetaOnChangue(valorInput)
+
+})
+
+formularioTarjeta.tarjetaNombreInput.addEventListener('keyup', (e) => {
+  let valorInput = e.target.value;
+  nombreTarjetaOnChange(valorInput)
+})
+
+formularioTarjeta.selectMes.addEventListener('change', (e) => {
+  mesExpiracion.textContent = e.target.value
+  mostrarFrenteTarjeta()
+})
+
+// select year
+formularioTarjeta.selectYear.addEventListener('change', (e) => {
+  yearExpiracion.textContent = e.target.value.slice(2)
+  mostrarFrenteTarjeta()
+})
+
+// ccv 
+formularioTarjeta.tarjetaCCVInput.addEventListener('keyup', () => {
+  if(!containerTarjeta.classList.contains('active')){
+      containerTarjeta.classList.toggle('active')
+  }
+
+  formularioTarjeta.tarjetaCCVInput.value = formularioTarjeta.tarjetaCCVInput.value
+  .replace(/\s/g, '')
+  .replace(/\D/g, '');
+
+  ccv.textContent = formularioTarjeta.tarjetaCCVInput.value
+
 })
 
 
@@ -568,12 +629,92 @@ const writeNotifications = (data) => {
 
 }
 
+// FUNCIONES TARJETA
+
+// FUNCION NUMERO DE TARJETA
+const numeroTarjetaOnChangue = (valorInput) =>{
+  const tarjetaNumero = containerTarjeta.querySelector('#tarjetaNumero')
+
+  formularioTarjeta.tarjetaNumeroInput.value = valorInput
+  // eliminamos espacion en blanco
+  .replace(/\s/g, '')
+  // eliminar letras
+  .replace(/\D/g, '')
+  // podemos cada 4 numeros
+  .replace(/([0-9]{4})/g, '$1 ')
+  // elimina el ultimo espacio
+  .trim();
+
+  tarjetaNumero.textContent = valorInput;
+
+  if(valorInput === ''){
+    tarjetaNumero.textContent ='#### #### #### ####'
+
+    logoMarca.innerHTML = '';
+  }
+
+  if(valorInput[0] === '4'){
+    logoMarca.innerHTML = '';
+    const imagen = document.createElement('img')
+    imagen.src = 'img/visa.png'
+    logoMarca.appendChild(imagen)
+  }else if(valorInput[0] === '5'){
+    logoMarca.innerHTML = '';
+    const imagen = document.createElement('img')
+    imagen.src = 'img/mastercard.png'
+    logoMarca.appendChild(imagen)
+  }
+  mostrarFrenteTarjeta()
+}
+
+const nombreTarjetaOnChange = (valorInput) => {
+
+  const nombreTarjeta = containerTarjeta.querySelector('#tarjetaNombre')
+  const firma = containerTarjeta.querySelector('#tarjetaFirma')
+
+  formularioTarjeta.tarjetaNombreInput.value = valorInput
+  .replace(/[0-9]/g, '')
+
+  nombreTarjeta.textContent = valorInput;
+  firma.textContent = valorInput;
+
+  if(valorInput == ''){
+      nombreTarjeta.textContent = 'jhon doe'
+  }
+
+  mostrarFrenteTarjeta()
+}
+
+// FUNCION PARA MOSTRAR EL FRENTE
+const mostrarFrenteTarjeta = () => {
+  if(containerTarjeta.classList.contains('active')){
+      containerTarjeta.classList.remove('active')
+  }
+}
+
 // DATOS OBTENIDOS STORAGE
 
 let users = getStorage('users')
 let userState = getStorage('userState')
 let storageProducts = []
 // ESCRIBIENDO LA APLICACION
+
+// creamos las opciones de meses
+for( let i = 1; i<= 12; i++){
+  let opcion = document.createElement('option')
+  opcion.value = i;
+  opcion.innerHTML = i;
+  formularioTarjeta.selectMes.appendChild(opcion)
+}
+
+// obtenemos el año actual
+const yearActual = new Date().getFullYear();
+for( let i = yearActual; i <= yearActual + 8; i++){
+  let opcion = document.createElement('option')
+  opcion.value = i;
+  opcion.innerHTML = i;
+  formularioTarjeta.selectYear.appendChild(opcion)
+}
 
 const getDataProducts = async() => {
   storageProducts = await (getStorage('products').length === 0 ? getDataFetch() : getStorage('products'))
