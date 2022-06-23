@@ -90,7 +90,7 @@ const logoMarca = document.querySelector('#marcaLogo')
 const mesExpiracion = document.querySelector('#tarjeta #tarjeta__expiracion .mes')
 const yearExpiracion = document.querySelector('#tarjeta #tarjeta__expiracion .year')
 const ccv = document.querySelector('#tarjeta #tarjeta__ccv')
-
+const ventaButton = document.querySelector('#ventaButton')
 
  
 // EVENTOS
@@ -163,6 +163,12 @@ formularioTarjeta.tarjetaCCVInput.addEventListener('keyup', () => {
 
   ccv.textContent = formularioTarjeta.tarjetaCCVInput.value
 
+})
+
+// comprar
+ventaButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  comprarCarrito()
 })
 
 
@@ -540,6 +546,7 @@ const addItemCarrito = (title, cantidad, price) => {
   writeNotifications(`${newCarritoItem.title} agregado al carrito`)
   uploadStorage('userState', userState)
   writeCarrito()
+  writeVenta()
 }
 
 
@@ -582,6 +589,7 @@ const writeCarrito = () => {
           userState.carrito = newCarrito;
           localStorage.setItem('userState', JSON.stringify(userState))
           writeCarrito()
+          writeVenta()
         })
       })
 
@@ -591,6 +599,7 @@ const writeCarrito = () => {
           userState.carrito[id].cantidad = parseInt(btn.value)
           localStorage.setItem('userState', JSON.stringify(userState))
           writeCarrito()
+          writeVenta()
         })
       })
     })
@@ -611,15 +620,6 @@ const deleteCarrito = () => {
   uploadStorage('userState', userState)  
 }
 
-
-// FUNCION COMPRAR CARRITO
-const buyCarrito = () => {
-
-  
-
-}
-
-
 // FUNCION CREAR NOTIFICACIONES
 const writeNotifications = (data) => {
   userNotification.innerHTML +=`
@@ -631,6 +631,23 @@ const writeNotifications = (data) => {
 
 // FUNCIONES TARJETA
 
+// FUINCION ESCRIBIR VENTA
+
+const writeVenta =() => {
+  const ventaPrecioTotal = document.querySelector('#ventaPrecioTotal')
+  const carrito = userState.carrito;
+  let precioTotal = 0
+  if(carrito?.length !== 0){
+    carrito.forEach(item => {
+      const {cantidad, price} = item
+      const total = cantidad*price
+      precioTotal += total
+    })
+    ventaPrecioTotal.textContent = `$${precioTotal}`
+  }else{
+    ventaPrecioTotal.textContent = `$0`
+  }
+}
 // FUNCION NUMERO DE TARJETA
 const numeroTarjetaOnChangue = (valorInput) =>{
   const tarjetaNumero = containerTarjeta.querySelector('#tarjetaNumero')
@@ -688,9 +705,73 @@ const nombreTarjetaOnChange = (valorInput) => {
 // FUNCION PARA MOSTRAR EL FRENTE
 const mostrarFrenteTarjeta = () => {
   if(containerTarjeta.classList.contains('active')){
-      containerTarjeta.classList.remove('active')
+    containerTarjeta.classList.remove('active')
   }
 }
+
+// FUNCION COMPRAR
+
+const comprarCarrito = () => {
+
+  const nombre = formularioTarjeta.tarjetaNombreInput.value
+  const numero = formularioTarjeta.tarjetaNumeroInput.value
+  const ccv = formularioTarjeta.tarjetaCCVInput.value
+  const mes = formularioTarjeta.selectMes
+  const year = formularioTarjeta.selectYear
+
+  
+  
+  if(!nombre || !numero || !ccv || !mes || !year){
+    Swal.fire({
+      icon: 'error',
+      title: 'Complete los campos'
+    })
+    return;
+  }
+  deleteCarrito()
+  Swal.fire({
+    icon: 'success',
+    title: 'Exelente',
+    text: 'Usted a comprado todo su carrito'
+  })
+}
+
+
+formularioTarjeta.tarjetaNumeroInput.addEventListener('keyup', (e) => {
+  let valorInput = e.target.value;
+  numeroTarjetaOnChangue(valorInput)
+
+})
+
+formularioTarjeta.tarjetaNombreInput.addEventListener('keyup', (e) => {
+  let valorInput = e.target.value;
+  nombreTarjetaOnChange(valorInput)
+})
+
+formularioTarjeta.selectMes.addEventListener('change', (e) => {
+  mesExpiracion.textContent = e.target.value
+  mostrarFrenteTarjeta()
+})
+
+// select year
+formularioTarjeta.selectYear.addEventListener('change', (e) => {
+  yearExpiracion.textContent = e.target.value.slice(2)
+  mostrarFrenteTarjeta()
+})
+
+// ccv 
+formularioTarjeta.tarjetaCCVInput.addEventListener('keyup', () => {
+  if(!containerTarjeta.classList.contains('active')){
+      containerTarjeta.classList.toggle('active')
+  }
+
+  formularioTarjeta.tarjetaCCVInput.value = formularioTarjeta.tarjetaCCVInput.value
+  .replace(/\s/g, '')
+  .replace(/\D/g, '');
+
+  ccv.textContent = formularioTarjeta.tarjetaCCVInput.value
+
+})
 
 // DATOS OBTENIDOS STORAGE
 
@@ -724,5 +805,6 @@ const getDataProducts = async() => {
 
 getDataProducts()
 onAuthState()
+writeVenta()
 userState.length !== 0 && writeCarrito();
 userState.length !== 0 ? writeNotifications('Ingreso correctamente') : writeNotifications('Para tener mas funciones incicie sesion');
