@@ -721,19 +721,26 @@ const comprarCarrito = () => {
 
   
   
-  if(!nombre || !numero || !ccv || !mes || !year){
-    Swal.fire({
-      icon: 'error',
-      title: 'Complete los campos'
-    })
-    return;
-  }
+  // if(!nombre || !numero || !ccv || !mes || !year){
+  //   Swal.fire({
+  //     icon: 'error',
+  //     title: 'Complete los campos'
+  //   })
+  //   return;
+  // }
   deleteCarrito()
   Swal.fire({
     icon: 'success',
-    title: 'Exelente',
-    text: 'Usted a comprado todo su carrito'
+    text: 'Se ha comprado todo su carrito',
+    timer: 1500,
+    showConfirmButton: false
+
   })
+  
+  let date = new Date();
+  let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
+  console.log(output);
+
 }
 
 

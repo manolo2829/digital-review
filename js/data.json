@@ -4,63 +4,342 @@
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "buzos",
     "img": "./img/buzos.png",
-    "price": 200
+    "price": 200,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Buzo HP",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "buzos",
     "img": "./img/buzos.png",
-    "price": 210
+    "price": 210,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Remera Omen",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "remeras",
     "img": "./img/remeras.png",
-    "price": 90
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Remera HP",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "remeras",
     "img": "./img/remeras.png",
-    "price": 100
+    "price": 100,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Campera HP",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "camperas",
     "img": "./img/camperas.png",
-    "price": 150
+    "price": 150,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Campera Omen",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "camperas",
     "img": "./img/camperas.png",
-    "price": 130
+    "price": 130,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Buzo Asus",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "buzos",
     "img": "./img/buzos.png",
-    "price": 200
+    "price": 200,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Remera Asus",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "remeras",
     "img": "./img/remeras.png",
-    "price": 90
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   },
   {
     "title": "Campera Asus",
     "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
     "category": "camperas",
     "img": "./img/camperas.png",
-    "price": 150
+    "price": 150,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      },{
+        "owner": "Manolo Diez",
+        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
   }
 ]
 
