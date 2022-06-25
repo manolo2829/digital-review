@@ -523,9 +523,20 @@ const openItem = (e) => {
 const writeComments = (arr, parent) => {
   parent.innerHTML = ''
   console.log(arr)
+  if(arr.length === 0){
+    const p = document.createElement('p')
+    const input = document.createElement('input')
+    p.classList.add('text-center')
+    input.classList.add('form-control')
+    parent.appendChild(p)
+    parent.appendChild(input)
+    return
+  }
+
   arr.forEach(element => {
     const container = document.createElement('div')
     container.classList.add('col-12')
+    container.classList.add('p-0')
 
     const containerCard = document.createElement('div')
     containerCard.setAttribute('class', 'card mb-3')
@@ -542,10 +553,10 @@ const writeComments = (arr, parent) => {
     text.textContent = element.text
 
     const commentMethodsContainer = document.createElement('div')
-    commentMethodsContainer.setAttribute('class', 'm-3 d-flex')    
+    commentMethodsContainer.setAttribute('class', 'm-3 d-flex commentMethodsContainer')    
 
     const likedButton = document.createElement('button')
-    likedButton.setAttribute('class', 'likedButton btn')
+    likedButton.setAttribute('class', 'likedButton btn me-2')
 
     const likedIcon = document.createElement('i')
     likedIcon.setAttribute('class', 'fa-solid fa-thumbs-up')
@@ -555,11 +566,11 @@ const writeComments = (arr, parent) => {
     likedContent.textContent = element.likes
 
     const inputResponse = document.createElement('input')
-    inputResponse.setAttribute('class', 'form-control mx-3')
+    inputResponse.setAttribute('class', 'form-control me-2 inputResponse')
 
     const buttonSubmit = document.createElement('button')
-    buttonSubmit.setAttribute('class', 'btn')
-    buttonSubmit.textContent = 'Subir'
+    buttonSubmit.setAttribute('class', 'btn buttonSubmit')
+    buttonSubmit.textContent = 'Responder'
 
     const footerContainer = document.createElement('div')
     footerContainer.setAttribute('class', 'card-footer text-muted d-flex justify-content-between align-items-center')
@@ -570,7 +581,7 @@ const writeComments = (arr, parent) => {
 
     const seeResponses = document.createElement('p')
     seeResponses.setAttribute('class', 'btnVerRespuestas')
-    seeResponses.textContent = 'Ver respuestas'
+    seeResponses.textContent = `Hay ${element.response.length} respuestas`
 
     const containerCommentsResponses = document.createElement('div')
     containerCommentsResponses.setAttribute('class', 'containerCommnetsResponses')
@@ -609,10 +620,53 @@ const writeComments = (arr, parent) => {
       uploadStorage('products', storageProducts)
     })
 
+    buttonSubmit.addEventListener('click', () => {
+      inputResponse.classList.toggle('active')
+      if(inputResponse.classList.contains('active')){
+        buttonSubmit.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+      }else{
+        buttonSubmit.textContent = 'Responder'
+      }
+    })
+
+    inputResponse.addEventListener('keyup', (e) => {
+      if(e.key !== 'Enter'){
+        return;
+      }
+      let date = new Date();
+      let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
+      const newComment = {
+        date: output,
+        likes: 0,
+        owner: userState.username,
+        text: inputResponse.value,
+        response: []
+      }
+      if(userState.length === 0){
+        Swal.fire({
+          icon: 'error',
+          title: 'Inicie sesion'
+        })
+        return
+      }
+      else if(inputResponse.value.length === 0){
+        Swal.fire({
+          icon: 'error',
+          title: 'Debe escribir algo'
+        })
+        return
+      }
+      
+      element.response.unshift(newComment)
+      uploadStorage('products', storageProducts)
+      writeComments(element.response, containerCommentsResponses)
+    })
+
     if(element.response.length > 0){
       writeComments(element.response, containerCommentsResponses);
     }
   })  
+  
 
 }
 
@@ -911,6 +965,6 @@ const getDataProducts = async() => {
 
 getDataProducts()
 onAuthState()
-writeVenta()
+userState.length !== 0 && writeVenta()
 userState.length !== 0 && writeCarrito();
 userState.length !== 0 ? writeNotifications('Ingreso correctamente') : writeNotifications('Para tener mas funciones incicie sesion');

@@ -110,6 +110,27 @@
                         .card{
                             background-color: #171523;
                             .card-body{
+                                .commentMethodsContainer{
+                                    .buttonSubmit{
+                                        background-color: $color-grayBlack;
+                                        color: $color-gray;
+                                        &:hover{
+                                            background-color: $color-blue;
+                                            color: #fff;
+                                        }
+
+                                        &.active{
+                                            display: none;
+                                        }
+                                    }
+                                    .inputResponse{
+                                        display: none;
+
+                                        &.active{
+                                            display: block;
+                                        }
+                                    }
+                                }
                                 .card-footer{
                                     .btnVerRespuestas{
                                         &:hover{

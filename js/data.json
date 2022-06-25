@@ -332,37 +332,7 @@
     "category": "camperas",
     "img": "./img/camperas.png",
     "price": 150,
-    "comments": [
-      {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      }
-    ]
+    "comments": []
   }
 ]
 

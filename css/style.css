@@ -866,6 +866,23 @@ body .container-lg .model__container .model__menu h2 {
 #modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card {
   background-color: #171523;
 }
+#modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card .card-body .commentMethodsContainer .buttonSubmit {
+  background-color: #353340;
+  color: #808191;
+}
+#modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card .card-body .commentMethodsContainer .buttonSubmit:hover {
+  background-color: #4bb1cd;
+  color: #fff;
+}
+#modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card .card-body .commentMethodsContainer .buttonSubmit.active {
+  display: none;
+}
+#modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card .card-body .commentMethodsContainer .inputResponse {
+  display: none;
+}
+#modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card .card-body .commentMethodsContainer .inputResponse.active {
+  display: block;
+}
 #modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .card .card-body .card-footer .btnVerRespuestas:hover {
   color: #4bb1cd;
   cursor: pointer;
