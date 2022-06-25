@@ -451,45 +451,60 @@
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="row modal__header">
-                        <h6 id="modal__title"></h6>
-                    </div>
+                <div class="modal-body py-5">
                     <div class="row modal__body justify-content-center align-items-center">
                         <div class="col-lg-6 col-12 row justify-content-center align-items-center">
-                            <img class="p-0" src="./img/buzos.png" alt="">
+                            <img class="p-0" src="./img/buzos.png" alt="" id="modal__img">
                         </div>
-                        <div class="col-lg-6 col-12">
-                            <p id="modal__description"></p>
-                        </div>
-
-                        <div class="col-12 modal__bottom">
-                            <p class="category">
-                                Categoria: <span id="modal__category"></span>
-                            </p>
-
-                            <p class="price" id="modal__price"></p>
-                        </div>
-
-                        <div class="row justify-content-center align-items-start modal__footer">
-                            <div class="p-0 col-lg-4">
-                                <label for="cantidadItems" class="form-label"></label>
-                                <input type="number" class="form-control" value="1" min="1" id="cantidadItems">
+                        <div class="col-lg-6 col-12 px-5 modal__text">
+                            <h6 id="modal__title">Buzo</h6>
+                            <p id="modal__description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.</p>
+                            <div class="modal__bottom">
+                                <p class="category">
+                                    Categoria: <span id="modal__category">Buzo</span>
+                                </p>
+    
+                                <p class="price">Precio/u: <span id="modal__price">$100</span></p>
                             </div>
-                            <div class="p-0 col-lg-4 modal__button__container">
+                            <div class="row flex-row justify-content-between align-items-center modal__footer">
+                                <div class="p-0 col-5 p-2">
+                                    <input type="number" class="form-control" value="1" min="1" id="cantidadItems">
+                                </div>
+                                <div class="p-0 col-5 modal__button__container" id="modal__button__container"></div>
+                            </div>
+                        </div>
+                        <div class="modal__comments">
+                            <p class="comments__title pb-3">Comentarios del producto</p>
+                            <div class="row comment__container" id="modal__comments">
+                                <!-- <div class="col-12">
+                                    <div class="card mb-3">
+                                        <div class="card-body p-0">
+                                            <p class="card-title text-start h5 px-3">Card title</p>
+                                            <p class="card-text text-start px-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <div class="m-3 d-flex">
+                                                <button class="btn"><i class="fa-solid fa-thumbs-up"><span class="px-2 numberLikes">1</span></i></button>
+                                                <input type="text" class="form-control mx-3">
+                                                <button class="btn">Subir</button>
+                                            </div>
 
+                                            <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                                                <p class="text-start m-0">2 days ago</p>
+                                                <p class="btnVerRespuestas">Ver respuestas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="containerCommnetsResponses ">
+                                    </div>
+                                </div> -->
+                                
                             </div>
                         </div>
                     </div>
-
-                    <div class="modal__comments" id="modal__comments">
-                        <h6>En desarrollo</h6>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Modal buy carrito -->
     <div class="modal fade" id="modalBuyCarrito" tabindex="-1" aria-hidden="true">

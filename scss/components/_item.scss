@@ -14,17 +14,18 @@
             }
             @extend %scrollBar;
 
-            .modal__header{
-                margin: $m-4 0;
+            
+
+            .modal__body{
+                
+
                 h6{
                     color: $color-gray;
                     text-align: center;
-                    font-size: $h4-font-size;
+                    font-size: $h3-font-size;
+                    margin: $m-3 0;
                 }
-            }
-
-            .modal__body{
-
+ 
                 img{
                     width: 100%;
                     margin-bottom: $m-3;
@@ -37,13 +38,22 @@
                 p{
                     color: $color-gray;
                     font-size: $h6-font-size;
+                    text-align: center;
+                    margin: $m-2 0;
+                }
 
-                    @media (min-width: 992px) {
-                        font-size: $h5-font-size;
-                    }
+                .modal__text{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: column;
                 }
 
                 .modal__bottom{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     .category{
                         span{
                             color: $color-blue;
@@ -51,7 +61,9 @@
                     }
     
                     .price{
-                        color: green;
+                        span{
+                            color: green;
+                        }
                     }
 
                 }
@@ -69,7 +81,7 @@
 
                         button{
                             height: 30px;
-                            margin-top: $m-3;
+                            
                             border-radius: 10px;
                             background-color: $color-grayBlack;
                             color: $color-gray;
@@ -87,10 +99,40 @@
             }
 
             .modal__comments{
-                margin: $m-5 0;
-                text-align: center;
-                h6{
-                    color: $color-blue;
+                .comments__title{
+                    margin-top: $m-5 ;
+                    text-align: center;
+                    font-size: 20px;
+                }
+
+                .comment__container{
+                    .col-12{
+                        .card{
+                            background-color: #171523;
+                            .card-body{
+                                .card-footer{
+                                    .btnVerRespuestas{
+                                        &:hover{
+                                            color: $color-blue;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .containerCommnetsResponses{
+                            display: none;
+                            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                            transition: clip-path .3s ease-out;
+                            
+                            &.active{
+                                display: block;
+                                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                            }
+                        }   
+                    }
+
+
                 }
             }
         }

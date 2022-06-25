@@ -1,7 +1,7 @@
 [
   {
     "title": "Buzo Omen",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "buzos",
     "img": "./img/buzos.png",
     "price": 200,
@@ -10,14 +10,37 @@
         "owner": "Manolo Diez",
         "text": "!Que buen producto, el buzo tiene una calidad increible",
         "date": "24/06/2022 a las 8:55",
-        "likes": 0,
+        "likes": 1,
         "response": [
           {
             "owner": "Nicolas 222",
             "text": "!Coincido",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
-            "response": []
+            "response": [
+              {
+                "owner": "Nicolas 222",
+                "text": "!Coincido",
+                "date": "24/06/2022 a las 8:57",
+                "likes": 0,
+                "response": []
+              }
+            ]
+          },
+          {
+            "owner": "Nicolas 222",
+            "text": "!Coincido",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": [
+              {
+                "owner": "Nicolas 222",
+                "text": "!Coincido",
+                "date": "24/06/2022 a las 8:57",
+                "likes": 0,
+                "response": []
+              }
+            ]
           }
         ]
       },{
@@ -39,7 +62,7 @@
   },
   {
     "title": "Buzo HP",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "buzos",
     "img": "./img/buzos.png",
     "price": 210,
@@ -77,7 +100,7 @@
   },
   {
     "title": "Remera Omen",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "remeras",
     "img": "./img/remeras.png",
     "price": 90,
@@ -115,7 +138,7 @@
   },
   {
     "title": "Remera HP",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "remeras",
     "img": "./img/remeras.png",
     "price": 100,
@@ -153,7 +176,7 @@
   },
   {
     "title": "Campera HP",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "camperas",
     "img": "./img/camperas.png",
     "price": 150,
@@ -191,7 +214,7 @@
   },
   {
     "title": "Campera Omen",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "camperas",
     "img": "./img/camperas.png",
     "price": 130,
@@ -229,7 +252,7 @@
   },
   {
     "title": "Buzo Asus",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "buzos",
     "img": "./img/buzos.png",
     "price": 200,
@@ -267,7 +290,7 @@
   },
   {
     "title": "Remera Asus",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "remeras",
     "img": "./img/remeras.png",
     "price": 90,
@@ -305,7 +328,7 @@
   },
   {
     "title": "Campera Asus",
-    "description": "lorem ipsum asnas dasd asfas da sfd asd  dsvc ascxas",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "camperas",
     "img": "./img/camperas.png",
     "price": 150,

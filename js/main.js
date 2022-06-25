@@ -488,7 +488,7 @@ const addProduct = () => {
 
 // ABRIR VENTANA ITEM
 const openItem = (e) => {
-  const { title, description, category, price } = storageProducts[e];
+  const { title, description, category, price, img, comments } = storageProducts[e];
 
   const modalFooterContainer = modalItem.querySelector('.modal__button__container')
 
@@ -498,6 +498,8 @@ const openItem = (e) => {
   modalItem.querySelector('#modal__description').innerHTML = description
   modalItem.querySelector('#modal__category').innerHTML = category
   modalItem.querySelector('#modal__price').innerHTML = price
+  modalItem.querySelector('#modal__img').src = img
+  const modalComments = document.querySelector('#modal__comments')
 
   let button = document.createElement('button')
   button.classList.add('btn__addCarrito')
@@ -514,6 +516,103 @@ const openItem = (e) => {
   button.addEventListener('click', () => {
     addItemCarrito(title, cantidadItems.value, price)
   })
+
+  writeComments(comments, modalComments)
+}
+
+const writeComments = (arr, parent) => {
+  parent.innerHTML = ''
+  console.log(arr)
+  arr.forEach(element => {
+    const container = document.createElement('div')
+    container.classList.add('col-12')
+
+    const containerCard = document.createElement('div')
+    containerCard.setAttribute('class', 'card mb-3')
+
+    const cardBody = document.createElement('div')
+    cardBody.setAttribute('class', 'card-body p-0')
+
+    const owner = document.createElement('p')
+    owner.setAttribute('class', 'card-title text-start h5 px-3')
+    owner.textContent = element.owner
+
+    const text = document.createElement('p')
+    text.setAttribute('class', 'card-text text-start px-3')
+    text.textContent = element.text
+
+    const commentMethodsContainer = document.createElement('div')
+    commentMethodsContainer.setAttribute('class', 'm-3 d-flex')    
+
+    const likedButton = document.createElement('button')
+    likedButton.setAttribute('class', 'likedButton btn')
+
+    const likedIcon = document.createElement('i')
+    likedIcon.setAttribute('class', 'fa-solid fa-thumbs-up')
+
+    const likedContent = document.createElement('span')
+    likedContent.setAttribute('class', 'px-2 numberLikes')
+    likedContent.textContent = element.likes
+
+    const inputResponse = document.createElement('input')
+    inputResponse.setAttribute('class', 'form-control mx-3')
+
+    const buttonSubmit = document.createElement('button')
+    buttonSubmit.setAttribute('class', 'btn')
+    buttonSubmit.textContent = 'Subir'
+
+    const footerContainer = document.createElement('div')
+    footerContainer.setAttribute('class', 'card-footer text-muted d-flex justify-content-between align-items-center')
+
+    const date = document.createElement('p')
+    date.setAttribute('class', 'text-start m-0')
+    date.textContent = element.date
+
+    const seeResponses = document.createElement('p')
+    seeResponses.setAttribute('class', 'btnVerRespuestas')
+    seeResponses.textContent = 'Ver respuestas'
+
+    const containerCommentsResponses = document.createElement('div')
+    containerCommentsResponses.setAttribute('class', 'containerCommnetsResponses')
+
+    container.appendChild(containerCard)
+    container.appendChild(containerCommentsResponses)
+
+    containerCard.appendChild(cardBody)
+
+    cardBody.appendChild(owner)
+    cardBody.appendChild(text)
+    cardBody.appendChild(commentMethodsContainer)
+    cardBody.appendChild(footerContainer)
+
+    commentMethodsContainer.appendChild(likedButton)
+    commentMethodsContainer.appendChild(inputResponse)
+    commentMethodsContainer.appendChild(buttonSubmit)
+
+    likedButton.appendChild(likedIcon)
+
+    likedIcon.appendChild(likedContent)
+
+    footerContainer.appendChild(date)
+    footerContainer.appendChild(seeResponses)
+
+    
+    parent.appendChild(container)
+
+    seeResponses.addEventListener('click', e => {
+      containerCommentsResponses.classList.toggle('active')
+    }) 
+
+    likedButton.addEventListener('click', e => {
+      element.likes++;
+      likedContent.textContent = element.likes;
+      uploadStorage('products', storageProducts)
+    })
+
+    if(element.response.length > 0){
+      writeComments(element.response, containerCommentsResponses);
+    }
+  })  
 
 }
 
