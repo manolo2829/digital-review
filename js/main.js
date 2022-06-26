@@ -259,7 +259,8 @@ const signUp = () => {
     username: username.value,
     password: password.value,
     saldo: 0,
-    carrito: []
+    carrito: [],
+    remember: false
   }
   let exist = false
   users.forEach(function(user) {
@@ -316,6 +317,7 @@ const signIn = () => {
   userState = user[0]
   if(check.checked === true){
     uploadStorage('userState', userState)
+    userState.remember = true
   }
 
   Swal.fire({
@@ -523,15 +525,22 @@ const openItem = (e) => {
 const writeComments = (arr, parent) => {
   parent.innerHTML = ''
   console.log(arr)
-  if(arr.length === 0){
-    const p = document.createElement('p')
-    const input = document.createElement('input')
-    p.classList.add('text-center')
-    input.classList.add('form-control')
-    parent.appendChild(p)
-    parent.appendChild(input)
-    return
-  }
+  const p = document.createElement('p')
+  const input = document.createElement('input')
+  input.placeholder = 'Escribir un comentario'
+  p.classList.add('text-center')
+  input.classList.add('form-control')
+  input.classList.add('mb-2')
+  parent.appendChild(p)
+  parent.appendChild(input)
+  input.addEventListener('keyup', (e) => {
+    if(e.key !== 'Enter'){
+      return;
+    }
+    // addNewComment(arr, parent, input.value)
+  })
+
+
 
   arr.forEach(element => {
     const container = document.createElement('div')
@@ -582,6 +591,7 @@ const writeComments = (arr, parent) => {
     const seeResponses = document.createElement('p')
     seeResponses.setAttribute('class', 'btnVerRespuestas')
     seeResponses.textContent = `Hay ${element.response.length} respuestas`
+    let cantidadRespuestas = element.response.length
 
     const containerCommentsResponses = document.createElement('div')
     containerCommentsResponses.setAttribute('class', 'containerCommnetsResponses')
@@ -633,33 +643,9 @@ const writeComments = (arr, parent) => {
       if(e.key !== 'Enter'){
         return;
       }
-      let date = new Date();
-      let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
-      const newComment = {
-        date: output,
-        likes: 0,
-        owner: userState.username,
-        text: inputResponse.value,
-        response: []
-      }
-      if(userState.length === 0){
-        Swal.fire({
-          icon: 'error',
-          title: 'Inicie sesion'
-        })
-        return
-      }
-      else if(inputResponse.value.length === 0){
-        Swal.fire({
-          icon: 'error',
-          title: 'Debe escribir algo'
-        })
-        return
-      }
-      
-      element.response.unshift(newComment)
-      uploadStorage('products', storageProducts)
-      writeComments(element.response, containerCommentsResponses)
+      cantidadRespuestas++
+      seeResponses.textContent = `Hay ${cantidadRespuestas} respuestas`
+      addNewComment(element, containerCommentsResponses, inputResponse.value)
     })
 
     if(element.response.length > 0){
@@ -670,6 +656,39 @@ const writeComments = (arr, parent) => {
 
 }
 
+const addNewComment = (element, parent, value) => {
+  console.log(element)
+  
+  let date = new Date();
+  let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
+  if(userState.length === 0){
+    Swal.fire({
+      icon: 'error',
+      title: 'Inicie sesion'
+    })
+    return
+  }
+  else if(value.length === 0){
+    Swal.fire({
+      icon: 'error',
+      title: 'Debe escribir algo'
+    })
+    return
+  }
+  const newComment = {
+    date: output,
+    likes: 0,
+    owner: userState.username,
+    text: value,
+    response: []
+  }
+  
+  console.log(element.response)
+  element.response.unshift(newComment)
+  uploadStorage('products', storageProducts)
+  writeComments(element.response, parent)
+  
+}
 
 // FUNCIONES CARRITO
 
@@ -697,7 +716,7 @@ const addItemCarrito = (title, cantidad, price) => {
     userState.carrito.push(newCarritoItem)
   }
   writeNotifications(`${newCarritoItem.title} agregado al carrito`)
-  uploadStorage('userState', userState)
+  userState.remember === true && uploadStorage('userState', userState)
   writeCarrito()
   writeVenta()
 }
@@ -740,7 +759,7 @@ const writeCarrito = () => {
           const id = btn.dataset.id
           const newCarrito = userState.carrito.filter((e)=> {return e !== userState.carrito[id]})
           userState.carrito = newCarrito;
-          localStorage.setItem('userState', JSON.stringify(userState))
+          userState.remember === true && localStorage.setItem('userState', JSON.stringify(userState))
           writeCarrito()
           writeVenta()
         })
@@ -750,7 +769,7 @@ const writeCarrito = () => {
         btn.addEventListener('change', () => {
           const id = btn.dataset.id
           userState.carrito[id].cantidad = parseInt(btn.value)
-          localStorage.setItem('userState', JSON.stringify(userState))
+          userState.remember === true && localStorage.setItem('userState', JSON.stringify(userState))
           writeCarrito()
           writeVenta()
         })
@@ -770,7 +789,7 @@ const deleteCarrito = () => {
   const precioTotalContainer = document.querySelector('#precioTotal')
   listContainer.innerHTML = ''
   precioTotalContainer.innerHTML = '$'+0
-  uploadStorage('userState', userState)  
+  userState.remember === true && uploadStorage('userState', userState)  
 }
 
 // FUNCION CREAR NOTIFICACIONES
