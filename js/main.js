@@ -199,12 +199,6 @@ btnDeleteCarrito.addEventListener('click', () => {
 })
 
 
-// EVENTO COMPRAR CARRITO
-btnBuyCarrito.addEventListener('click', () => {
-
-})
-
-
 // FUNCIONES
 
 // FUNCIONES FETCH
@@ -502,6 +496,9 @@ const openItem = (e) => {
   modalItem.querySelector('#modal__price').innerHTML = price
   modalItem.querySelector('#modal__img').src = img
   const modalComments = document.querySelector('#modal__comments')
+  
+  const inputCreateComment = document.querySelector('#inputCreateComment')
+  inputCreateComment.setAttribute('data__id', e)
 
   let button = document.createElement('button')
   button.classList.add('btn__addCarrito')
@@ -516,7 +513,59 @@ const openItem = (e) => {
   })
  
   button.addEventListener('click', () => {
+    if(userState.length === 0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Primero debe registrarse e iniciar sesion',
+        text: 'Despues podra comprar tranquilamente'
+      })
+      return
+    }
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Elemento añadido al carrito',
+      text: 'Puede dirigirse al carrito para comprar todo lo que añada'
+    })
     addItemCarrito(title, cantidadItems.value, price)
+  })
+
+  inputCreateComment.addEventListener('keyup', (e) => {
+    if(e.key !== 'Enter'){
+      return;
+    }
+
+    console.log(e.key)
+    
+    let date = new Date();
+    let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
+    if(userState.length === 0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Inicie sesion'
+      })
+      return
+    }
+    else if(inputCreateComment.value.length === 0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Debe escribir algo'
+      })
+      return
+    }
+
+    const newComment = {
+      date: output,
+      likes: 0,
+      owner: userState.username,
+      text: inputCreateComment.value,
+      response: []
+    }
+    comments.unshift(newComment)
+    console.log(comments)
+    uploadStorage('products', storageProducts)
+    writeComments(comments, modalComments)
+
   })
 
   writeComments(comments, modalComments)
@@ -524,23 +573,6 @@ const openItem = (e) => {
 
 const writeComments = (arr, parent) => {
   parent.innerHTML = ''
-  console.log(arr)
-  const p = document.createElement('p')
-  const input = document.createElement('input')
-  input.placeholder = 'Escribir un comentario'
-  p.classList.add('text-center')
-  input.classList.add('form-control')
-  input.classList.add('mb-2')
-  parent.appendChild(p)
-  parent.appendChild(input)
-  input.addEventListener('keyup', (e) => {
-    if(e.key !== 'Enter'){
-      return;
-    }
-    // addNewComment(arr, parent, input.value)
-  })
-
-
 
   arr.forEach(element => {
     const container = document.createElement('div')
@@ -729,7 +761,7 @@ const writeCarrito = () => {
   const carritoContainer = document.querySelector('#modalCarritoItemList')
   const precioTotalContainer = document.querySelector('#precioTotal')
   carritoContainer.innerHTML = ''
-  let precioTotal = 0
+  let precioTotal = 0;
   if(carrito?.length !== 0){
     carrito.forEach(item => {
 
@@ -777,6 +809,7 @@ const writeCarrito = () => {
     })
     precioTotalContainer.innerHTML = `$${precioTotal}`
   }
+  precioTotalContainer.innerHTML = `$${precioTotal}`
 
 }
 
@@ -784,12 +817,27 @@ const writeCarrito = () => {
 // FUNCION VACIAR CARRITO 
 const deleteCarrito = () => {
 
-  userState.carrito = []
-  const listContainer = carritoContainerModal.querySelector('#modalCarritoItemList')
-  const precioTotalContainer = document.querySelector('#precioTotal')
-  listContainer.innerHTML = ''
-  precioTotalContainer.innerHTML = '$'+0
-  userState.remember === true && uploadStorage('userState', userState)  
+  Swal.fire({
+    title: 'Borrar todo el carrito',
+    showCancelButton: true,
+    confirmButtonText: 'confirmar'
+    }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      userState.carrito = []
+      const listContainer = carritoContainerModal.querySelector('#modalCarritoItemList')
+      const precioTotalContainer = document.querySelector('#precioTotal')
+      listContainer.innerHTML = ''
+      precioTotalContainer.innerHTML = '$'+0
+      userState.remember === true && uploadStorage('userState', userState)  
+      Swal.fire({
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false
+
+      })
+    }
+  })
 }
 
 // FUNCION CREAR NOTIFICACIONES
@@ -890,17 +938,13 @@ const comprarCarrito = () => {
   const ccv = formularioTarjeta.tarjetaCCVInput.value
   const mes = formularioTarjeta.selectMes
   const year = formularioTarjeta.selectYear
-
-  
-  
-  // if(!nombre || !numero || !ccv || !mes || !year){
-  //   Swal.fire({
-  //     icon: 'error',
-  //     title: 'Complete los campos'
-  //   })
-  //   return;
-  // }
-  deleteCarrito()
+  if(!nombre || !numero || !ccv || !mes || !year){
+    Swal.fire({
+      icon: 'error',
+      title: 'Complete los campos'
+    })
+    return;
+  }
   Swal.fire({
     icon: 'success',
     text: 'Se ha comprado todo su carrito',
@@ -908,11 +952,12 @@ const comprarCarrito = () => {
     showConfirmButton: false
 
   })
-  
-  let date = new Date();
-  let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
-  console.log(output);
-
+  userState.carrito.forEach(item => {
+    writeNotifications(`Se compro un ${item.title}`)
+  })
+  userState.carrito = []
+  userState.remember === true && uploadStorage('userState', userState)  
+  writeCarrito()
 }
 
 

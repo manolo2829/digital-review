@@ -888,12 +888,12 @@ body .container-lg .model__container .model__menu h2 {
   cursor: pointer;
 }
 #modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .containerCommnetsResponses {
-  display: none;
+  position: absolute;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   transition: clip-path 0.3s ease-out;
 }
 #modalItem .modal-content .modal-body .modal__comments .comment__container .col-12 .containerCommnetsResponses.active {
-  display: block;
+  position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
