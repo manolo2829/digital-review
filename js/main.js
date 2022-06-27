@@ -92,6 +92,9 @@ const yearExpiracion = document.querySelector('#tarjeta #tarjeta__expiracion .ye
 const ccv = document.querySelector('#tarjeta #tarjeta__ccv')
 const ventaButton = document.querySelector('#ventaButton')
 
+
+// PRODUCTOS DESTACADOS
+const productFeatured = document.querySelector('#product__featured') 
  
 // EVENTOS
 
@@ -468,7 +471,7 @@ const addProduct = () => {
     price: price.value
   }
   
-  storageProducts = [...storageProducts, newProduct]
+  storageProducts.unshift(newProduct)
   uploadStorage('products', storageProducts)
   storageProducts = getStorage('products')
   console.log(storageProducts)
@@ -1025,6 +1028,34 @@ const getDataProducts = async() => {
   storageProducts = await (getStorage('products').length === 0 ? getDataFetch() : getStorage('products'))
   console.log(storageProducts)
   writeProducts()
+  writeNewProducts()
+}
+
+// escribir los productos nuevos
+const writeNewProducts = () => {
+  console.log(storageProducts)
+  let num = 0
+  for(let element of storageProducts){
+    console.log(element)
+    const content = `
+    <a href="#" class="col-lg-3 col-md-6 col-11 my-2">
+      <div class="card bg-dark p-0">
+        <img src="${element.img}" class="card-img" alt="...">
+        <div class="card-img-overlay d-flex justify-content-around flex-column">
+          <h4 class="card-title">${element.title}</h4>
+          <p class="card-text">${element.price}</p>
+        </div>
+      </div>
+    </a>
+    `
+    num++
+    if(num===5){
+      break;
+    }
+    productFeatured.innerHTML += content;
+  }
+
+  console.log('New product')
 }
 
 getDataProducts()
