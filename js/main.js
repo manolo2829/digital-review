@@ -323,6 +323,8 @@ const signIn = () => {
     text: 'Tus datos no seran compartidos a nadie'
   })
 
+  writeNotifications(`${userState.username} inicio sesion`)
+
   console.log(userState)
   onAuthState()
 }
@@ -451,7 +453,7 @@ const addProduct = () => {
   const [title, description, price] = values
   console.log(values)
   const category = formCreateProduct.querySelector('#productCategory').value
-
+  console.log(category)
   if(!title.value || !description.value || !price.value || !category){
     Swal.fire({
       icon: 'warning',
@@ -468,7 +470,8 @@ const addProduct = () => {
     description: description.value,
     category: category,
     img: `./img/${category.toLowerCase()}.png`,
-    price: price.value
+    price: price.value,
+    comments: []
   }
   
   storageProducts.unshift(newProduct)
@@ -660,6 +663,14 @@ const writeComments = (arr, parent) => {
     }) 
 
     likedButton.addEventListener('click', e => {
+      if(userState.length === 0){
+        Swal.fire({
+          icon: 'error',
+          title: 'Debe iniciar sesion',
+          text: 'Para interactuar con los comentarios debe iniciar sesion'
+        })
+        return;
+      }
       element.likes++;
       likedContent.textContent = element.likes;
       uploadStorage('products', storageProducts)
@@ -939,8 +950,10 @@ const comprarCarrito = () => {
   const nombre = formularioTarjeta.tarjetaNombreInput.value
   const numero = formularioTarjeta.tarjetaNumeroInput.value
   const ccv = formularioTarjeta.tarjetaCCVInput.value
-  const mes = formularioTarjeta.selectMes
-  const year = formularioTarjeta.selectYear
+  const mes = formularioTarjeta.selectMes.value
+  const year = formularioTarjeta.selectYear.value
+  console.log(mes)
+  console.log(year)
   if(!nombre || !numero || !ccv || !mes || !year){
     Swal.fire({
       icon: 'error',
@@ -961,6 +974,7 @@ const comprarCarrito = () => {
   userState.carrito = []
   userState.remember === true && uploadStorage('userState', userState)  
   writeCarrito()
+  writeVenta()
 }
 
 
