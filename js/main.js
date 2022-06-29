@@ -235,18 +235,22 @@ const signUp = () => {
   const values = formSingup.getElementsByTagName('input')
   const [email, username, password, password2] = values
   if(!email.value || !username.value || !password.value || !password2.value){
-    Swal.fire(
-      'Advertencia',
-      'Complete todos los campos',
-      'warning'
-    )
+    Swal.fire({
+      title: 'Advertencia',
+      text: 'Complete todos los campos',
+      icon: 'warning',
+      background: '#1f1d2b',
+      color: '#fff'
+  })
     return;
   }
   if(password.value !== password2.value){
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Las contraseñas no coinciden'
+      text: 'Las contraseñas no coinciden',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return;
   }
@@ -272,13 +276,17 @@ const signUp = () => {
     Swal.fire({
       icon: 'success',
       title: 'Usuario creado correctamente',
-      text: 'Ahora inicie sesion'
+      text: 'Ahora inicie sesion',
+      background: '#1f1d2b',
+      color: '#fff'
     }) 
   }else{
     Swal.fire({
       icon: 'warning',
       title: 'Ese nombre ya esta en uso',
-      text: 'Pruebe con otro'
+      text: 'Pruebe con otro',
+      background: '#1f1d2b',
+      color: '#fff'
     })
   }
 
@@ -298,7 +306,9 @@ const signIn = () => {
     Swal.fire({
       icon: 'error',
       title: 'Usuario no encontrado',
-      text: 'Revise los campos'
+      text: 'Revise los campos',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return
   }
@@ -307,7 +317,9 @@ const signIn = () => {
     Swal.fire({
       icon: 'error',
       title: 'La contraseña del usuario: ' + user[0].username,
-      text: 'Es incorrecta'
+      text: 'Es incorrecta',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return
   }
@@ -320,7 +332,9 @@ const signIn = () => {
   Swal.fire({
     icon: 'success',
     title: 'Sesion iniciada',
-    text: 'Tus datos no seran compartidos a nadie'
+    text: 'Tus datos no seran compartidos a nadie',
+    background: '#1f1d2b',
+    color: '#fff'
   })
 
   writeNotifications(`${userState.username} inicio sesion`)
@@ -381,6 +395,8 @@ const logOut = () => {
   Swal.fire({
     title: '¿Cerrar sesion?',
     showCancelButton: true,
+    background: '#1f1d2b',
+    color: '#fff',
     confirmButtonText: 'confirmar'
     }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
@@ -390,7 +406,9 @@ const logOut = () => {
       Swal.fire({
         icon: 'success',
         timer: 1500,
-        showConfirmButton: false
+        showConfirmButton: false,
+        background: '#1f1d2b',
+        color: '#fff'
 
       })
       setTimeout( () => {
@@ -458,7 +476,9 @@ const addProduct = () => {
     Swal.fire({
       icon: 'warning',
       title: 'Campos vacios',
-      text: 'Debe llenar todos los campos con informacion valida'
+      text: 'Debe llenar todos los campos con informacion valida',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return;
   }
@@ -481,7 +501,9 @@ const addProduct = () => {
 
   Swal.fire({
     icon: 'success',
-    title: 'Productos subido exitosamente'
+    title: 'Productos subido exitosamente',
+    background: '#1f1d2b',
+    color: '#fff'
   })
   writeProducts()
 
@@ -523,7 +545,9 @@ const openItem = (e) => {
       Swal.fire({
         icon: 'error',
         title: 'Primero debe registrarse e iniciar sesion',
-        text: 'Despues podra comprar tranquilamente'
+        text: 'Despues podra comprar tranquilamente',
+        background: '#1f1d2b',
+        color: '#fff'
       })
       return
     }
@@ -531,7 +555,9 @@ const openItem = (e) => {
     Swal.fire({
       icon: 'success',
       title: 'Elemento añadido al carrito',
-      text: 'Puede dirigirse al carrito para comprar todo lo que añada'
+      text: 'Puede dirigirse al carrito para comprar todo lo que añada',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     addItemCarrito(title, cantidadItems.value, price)
   })
@@ -548,14 +574,18 @@ const openItem = (e) => {
     if(userState.length === 0){
       Swal.fire({
         icon: 'error',
-        title: 'Inicie sesion'
+        title: 'Inicie sesion',
+        background: '#1f1d2b',
+        color: '#fff'
       })
       return
     }
     else if(inputCreateComment.value.length === 0){
       Swal.fire({
         icon: 'error',
-        title: 'Debe escribir algo'
+        title: 'Debe escribir algo',
+        background: '#1f1d2b',
+        color: '#fff'
       })
       return
     }
@@ -667,7 +697,9 @@ const writeComments = (arr, parent) => {
         Swal.fire({
           icon: 'error',
           title: 'Debe iniciar sesion',
-          text: 'Para interactuar con los comentarios debe iniciar sesion'
+          text: 'Para interactuar con los comentarios debe iniciar sesion',
+          background: '#1f1d2b',
+          color: '#fff'
         })
         return;
       }
@@ -710,14 +742,18 @@ const addNewComment = (element, parent, value) => {
   if(userState.length === 0){
     Swal.fire({
       icon: 'error',
-      title: 'Inicie sesion'
+      title: 'Inicie sesion',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return
   }
   else if(value.length === 0){
     Swal.fire({
       icon: 'error',
-      title: 'Debe escribir algo'
+      title: 'Debe escribir algo',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return
   }
@@ -834,6 +870,8 @@ const deleteCarrito = () => {
   Swal.fire({
     title: 'Borrar todo el carrito',
     showCancelButton: true,
+    background: '#1f1d2b',
+    color: '#fff',
     confirmButtonText: 'confirmar'
     }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
@@ -847,7 +885,9 @@ const deleteCarrito = () => {
       Swal.fire({
         icon: 'success',
         timer: 1500,
-        showConfirmButton: false
+        showConfirmButton: false,
+        background: '#1f1d2b',
+        color: '#fff'
 
       })
     }
@@ -957,7 +997,9 @@ const comprarCarrito = () => {
   if(!nombre || !numero || !ccv || !mes || !year){
     Swal.fire({
       icon: 'error',
-      title: 'Complete los campos'
+      title: 'Complete los campos',
+      background: '#1f1d2b',
+      color: '#fff'
     })
     return;
   }
@@ -965,7 +1007,9 @@ const comprarCarrito = () => {
     icon: 'success',
     text: 'Se ha comprado todo su carrito',
     timer: 1500,
-    showConfirmButton: false
+    showConfirmButton: false,
+    background: '#1f1d2b',
+    color: '#fff'
 
   })
   userState.carrito.forEach(item => {
