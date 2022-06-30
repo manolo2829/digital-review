@@ -235,22 +235,18 @@ const signUp = () => {
   const values = formSingup.getElementsByTagName('input')
   const [email, username, password, password2] = values
   if(!email.value || !username.value || !password.value || !password2.value){
-    Swal.fire({
-      title: 'Advertencia',
-      text: 'Complete todos los campos',
-      icon: 'warning',
-      background: '#1f1d2b',
-      color: '#fff'
-  })
+    Swal.fire(
+      'Advertencia',
+      'Complete todos los campos',
+      'warning'
+    )
     return;
   }
   if(password.value !== password2.value){
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Las contraseñas no coinciden',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Las contraseñas no coinciden'
     })
     return;
   }
@@ -276,17 +272,13 @@ const signUp = () => {
     Swal.fire({
       icon: 'success',
       title: 'Usuario creado correctamente',
-      text: 'Ahora inicie sesion',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Ahora inicie sesion'
     }) 
   }else{
     Swal.fire({
       icon: 'warning',
       title: 'Ese nombre ya esta en uso',
-      text: 'Pruebe con otro',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Pruebe con otro'
     })
   }
 
@@ -306,9 +298,7 @@ const signIn = () => {
     Swal.fire({
       icon: 'error',
       title: 'Usuario no encontrado',
-      text: 'Revise los campos',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Revise los campos'
     })
     return
   }
@@ -317,9 +307,7 @@ const signIn = () => {
     Swal.fire({
       icon: 'error',
       title: 'La contraseña del usuario: ' + user[0].username,
-      text: 'Es incorrecta',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Es incorrecta'
     })
     return
   }
@@ -332,12 +320,8 @@ const signIn = () => {
   Swal.fire({
     icon: 'success',
     title: 'Sesion iniciada',
-    text: 'Tus datos no seran compartidos a nadie',
-    background: '#1f1d2b',
-    color: '#fff'
+    text: 'Tus datos no seran compartidos a nadie'
   })
-
-  writeNotifications(`${userState.username} inicio sesion`)
 
   console.log(userState)
   onAuthState()
@@ -395,8 +379,6 @@ const logOut = () => {
   Swal.fire({
     title: '¿Cerrar sesion?',
     showCancelButton: true,
-    background: '#1f1d2b',
-    color: '#fff',
     confirmButtonText: 'confirmar'
     }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
@@ -406,9 +388,7 @@ const logOut = () => {
       Swal.fire({
         icon: 'success',
         timer: 1500,
-        showConfirmButton: false,
-        background: '#1f1d2b',
-        color: '#fff'
+        showConfirmButton: false
 
       })
       setTimeout( () => {
@@ -471,14 +451,12 @@ const addProduct = () => {
   const [title, description, price] = values
   console.log(values)
   const category = formCreateProduct.querySelector('#productCategory').value
-  console.log(category)
+
   if(!title.value || !description.value || !price.value || !category){
     Swal.fire({
       icon: 'warning',
       title: 'Campos vacios',
-      text: 'Debe llenar todos los campos con informacion valida',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Debe llenar todos los campos con informacion valida'
     })
     return;
   }
@@ -490,8 +468,7 @@ const addProduct = () => {
     description: description.value,
     category: category,
     img: `./img/${category.toLowerCase()}.png`,
-    price: price.value,
-    comments: []
+    price: price.value
   }
   
   storageProducts.unshift(newProduct)
@@ -501,9 +478,7 @@ const addProduct = () => {
 
   Swal.fire({
     icon: 'success',
-    title: 'Productos subido exitosamente',
-    background: '#1f1d2b',
-    color: '#fff'
+    title: 'Productos subido exitosamente'
   })
   writeProducts()
 
@@ -545,9 +520,7 @@ const openItem = (e) => {
       Swal.fire({
         icon: 'error',
         title: 'Primero debe registrarse e iniciar sesion',
-        text: 'Despues podra comprar tranquilamente',
-        background: '#1f1d2b',
-        color: '#fff'
+        text: 'Despues podra comprar tranquilamente'
       })
       return
     }
@@ -555,9 +528,7 @@ const openItem = (e) => {
     Swal.fire({
       icon: 'success',
       title: 'Elemento añadido al carrito',
-      text: 'Puede dirigirse al carrito para comprar todo lo que añada',
-      background: '#1f1d2b',
-      color: '#fff'
+      text: 'Puede dirigirse al carrito para comprar todo lo que añada'
     })
     addItemCarrito(title, cantidadItems.value, price)
   })
@@ -574,18 +545,14 @@ const openItem = (e) => {
     if(userState.length === 0){
       Swal.fire({
         icon: 'error',
-        title: 'Inicie sesion',
-        background: '#1f1d2b',
-        color: '#fff'
+        title: 'Inicie sesion'
       })
       return
     }
     else if(inputCreateComment.value.length === 0){
       Swal.fire({
         icon: 'error',
-        title: 'Debe escribir algo',
-        background: '#1f1d2b',
-        color: '#fff'
+        title: 'Debe escribir algo'
       })
       return
     }
@@ -693,16 +660,6 @@ const writeComments = (arr, parent) => {
     }) 
 
     likedButton.addEventListener('click', e => {
-      if(userState.length === 0){
-        Swal.fire({
-          icon: 'error',
-          title: 'Debe iniciar sesion',
-          text: 'Para interactuar con los comentarios debe iniciar sesion',
-          background: '#1f1d2b',
-          color: '#fff'
-        })
-        return;
-      }
       element.likes++;
       likedContent.textContent = element.likes;
       uploadStorage('products', storageProducts)
@@ -742,18 +699,14 @@ const addNewComment = (element, parent, value) => {
   if(userState.length === 0){
     Swal.fire({
       icon: 'error',
-      title: 'Inicie sesion',
-      background: '#1f1d2b',
-      color: '#fff'
+      title: 'Inicie sesion'
     })
     return
   }
   else if(value.length === 0){
     Swal.fire({
       icon: 'error',
-      title: 'Debe escribir algo',
-      background: '#1f1d2b',
-      color: '#fff'
+      title: 'Debe escribir algo'
     })
     return
   }
@@ -870,8 +823,6 @@ const deleteCarrito = () => {
   Swal.fire({
     title: 'Borrar todo el carrito',
     showCancelButton: true,
-    background: '#1f1d2b',
-    color: '#fff',
     confirmButtonText: 'confirmar'
     }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
@@ -885,9 +836,7 @@ const deleteCarrito = () => {
       Swal.fire({
         icon: 'success',
         timer: 1500,
-        showConfirmButton: false,
-        background: '#1f1d2b',
-        color: '#fff'
+        showConfirmButton: false
 
       })
     }
@@ -990,16 +939,12 @@ const comprarCarrito = () => {
   const nombre = formularioTarjeta.tarjetaNombreInput.value
   const numero = formularioTarjeta.tarjetaNumeroInput.value
   const ccv = formularioTarjeta.tarjetaCCVInput.value
-  const mes = formularioTarjeta.selectMes.value
-  const year = formularioTarjeta.selectYear.value
-  console.log(mes)
-  console.log(year)
+  const mes = formularioTarjeta.selectMes
+  const year = formularioTarjeta.selectYear
   if(!nombre || !numero || !ccv || !mes || !year){
     Swal.fire({
       icon: 'error',
-      title: 'Complete los campos',
-      background: '#1f1d2b',
-      color: '#fff'
+      title: 'Complete los campos'
     })
     return;
   }
@@ -1007,9 +952,7 @@ const comprarCarrito = () => {
     icon: 'success',
     text: 'Se ha comprado todo su carrito',
     timer: 1500,
-    showConfirmButton: false,
-    background: '#1f1d2b',
-    color: '#fff'
+    showConfirmButton: false
 
   })
   userState.carrito.forEach(item => {
@@ -1018,7 +961,6 @@ const comprarCarrito = () => {
   userState.carrito = []
   userState.remember === true && uploadStorage('userState', userState)  
   writeCarrito()
-  writeVenta()
 }
 
 
@@ -1113,6 +1055,7 @@ const writeNewProducts = () => {
     productFeatured.innerHTML += content;
   }
 
+  console.log('New product')
 }
 
 getDataProducts()

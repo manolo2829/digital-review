@@ -246,6 +246,166 @@
     "img": "./img/camperas.png",
     "price": 150,
     "comments": []
+  },
+  {
+    "title": "Buzo Alienware",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "buzos",
+    "img": "./img/buzos.png",
+    "price": 200,
+    "comments": []
+  },
+  {
+    "title": "Remera Alienware",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "remeras",
+    "img": "./img/remeras.png",
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "¡Que buen producto, el buzo tiene una calidad increible!",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "¡Coincido!",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Campera Alienware",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "camperas",
+    "img": "./img/camperas.png",
+    "price": 150,
+    "comments": []
+  },
+  {
+    "title": "Buzo Predator",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "buzos",
+    "img": "./img/buzos.png",
+    "price": 200,
+    "comments": []
+  },
+  {
+    "title": "Remera Predator",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "remeras",
+    "img": "./img/remeras.png",
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "¡Que buen producto, el buzo tiene una calidad increible!",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "¡Coincido!",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Campera Predator",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "camperas",
+    "img": "./img/camperas.png",
+    "price": 150,
+    "comments": []
+  },
+  {
+    "title": "Buzo MSI",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "buzos",
+    "img": "./img/buzos.png",
+    "price": 200,
+    "comments": []
+  },
+  {
+    "title": "Remera MSI",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "remeras",
+    "img": "./img/remeras.png",
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "¡Que buen producto, el buzo tiene una calidad increible!",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "¡Coincido!",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Campera MSI",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "camperas",
+    "img": "./img/camperas.png",
+    "price": 150,
+    "comments": []
+  },
+  {
+    "title": "Buzo Legion",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "buzos",
+    "img": "./img/buzos.png",
+    "price": 200,
+    "comments": []
+  },
+  {
+    "title": "Remera Legion",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "remeras",
+    "img": "./img/remeras.png",
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "¡Que buen producto, el buzo tiene una calidad increible!",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "¡Coincido!",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Campera Legion",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "camperas",
+    "img": "./img/camperas.png",
+    "price": 150,
+    "comments": []
   }
 ]
 

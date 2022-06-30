@@ -46,10 +46,10 @@
                 background-color: $color-grayBlack;
                 transition: all .5s;
                 @media (min-width: 992px) {
-                    height: 320px;
+                    height: 310px;
                 }
                 @media (min-width: 1200px) {
-                    height: 350px;
+                    height: 320px;
                 }
 
                 .card-body{
@@ -87,6 +87,20 @@
             text-align: center;
             color: $color-gray;
             margin: $m-5 0;
+        }
+    }
+
+    .store__bottom{
+        button{
+            background-color: $color-grayBlack;
+            color: $color-gray;
+            transition: all ease-in-out .3s;
+            border: none;
+
+            &:hover{
+                background-color: $color-blue;
+                color: #fff;
+            }
         }
     }
 } 

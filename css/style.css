@@ -689,12 +689,12 @@ body .container-lg .model__container .model__menu h2 {
 }
 @media (min-width: 992px) {
   #pills-store .store__body a .card {
-    height: 320px;
+    height: 310px;
   }
 }
 @media (min-width: 1200px) {
   #pills-store .store__body a .card {
-    height: 350px;
+    height: 320px;
   }
 }
 #pills-store .store__body a .card .card-body {
@@ -724,6 +724,16 @@ body .container-lg .model__container .model__menu h2 {
   text-align: center;
   color: #808191;
   margin: 3rem 0;
+}
+#pills-store .store__bottom button {
+  background-color: #353340;
+  color: #808191;
+  transition: all ease-in-out 0.3s;
+  border: none;
+}
+#pills-store .store__bottom button:hover {
+  background-color: #4bb1cd;
+  color: #fff;
 }
 
 #modalItem .modal-content .modal-body::-webkit-scrollbar, body .container-lg .model__container .model__menu::-webkit-scrollbar, body .container-lg .model__container .model__body::-webkit-scrollbar {
