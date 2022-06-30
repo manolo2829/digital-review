@@ -687,6 +687,22 @@ body .container-lg .model__container .model__menu h2 {
   background-color: #353340;
   transition: all 0.5s;
 }
+@media (min-width: 992px) {
+  #pills-store .store__body a .card {
+    height: 320px;
+  }
+}
+@media (min-width: 1200px) {
+  #pills-store .store__body a .card {
+    height: 350px;
+  }
+}
+#pills-store .store__body a .card .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+}
 #pills-store .store__body a .card div h5 {
   color: #808191;
   font-size: 1.25rem;

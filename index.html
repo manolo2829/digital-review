@@ -38,7 +38,6 @@
                             <a href="#" id="pills-store-tab" data-bs-toggle="pill" data-bs-target="#pills-store" type="button" role="tab" aria-controls="pills-store" aria-selected="false" data-toggle="tab" class="d-flex justify-content-center align-items-center">
                                 <i class="fa-solid fa-store"></i>
                                 <p class="ms-3 my-0 d-none d-lg-block">Store</p>
-
                             </a>
                         </li>
                         <li>
@@ -167,7 +166,7 @@
                             <div class="row products__title">
                                 <h3>Productos Nuevos</h3>
                             </div>
-                            <div class="row products__body justify-content-center align-items-center" id="product__featured">
+                            <div class="row products__body justify-content-center align-items-center" id="product__featured" role="tablist">
                                 <!-- <a href="#" class="col-lg-3 col-md-6 col-11 my-2" >
                                     <div class="card bg-dark p-0">
                                         <img src="./img/buzos.png" class="card-img" alt="...">
@@ -353,7 +352,7 @@
                     <form id="formCreateProduct">
                         <div class="mb-3">
                             <label for="productTitle" class="form-label">Nombre del producto</label>
-                            <input type="text" class="form-control" id="productTitle">
+                            <input type="text" class="form-control" maxlength="15" id="productTitle">
                         </div>
                         <div class="mb-3">
                             <label for="productDescription" class="form-label">Descripcion</label>

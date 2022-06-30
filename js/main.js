@@ -1113,7 +1113,6 @@ const writeNewProducts = () => {
     productFeatured.innerHTML += content;
   }
 
-  console.log('New product')
 }
 
 getDataProducts()

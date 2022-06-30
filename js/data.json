@@ -7,51 +7,28 @@
     "price": 200,
     "comments": [
       {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "Nicolas Garcia",
+        "text": "Que buen producto, el buzo tiene una calidad increible",
         "date": "24/06/2022 a las 8:55",
         "likes": 1,
         "response": [
           {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "owner": "Manuel Diez",
+            "text": "¡Opino lo mismo!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
-            "response": [
-              {
-                "owner": "Nicolas 222",
-                "text": "!Coincido",
-                "date": "24/06/2022 a las 8:57",
-                "likes": 0,
-                "response": []
-              }
-            ]
-          },
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": [
-              {
-                "owner": "Nicolas 222",
-                "text": "!Coincido",
-                "date": "24/06/2022 a las 8:57",
-                "likes": 0,
-                "response": []
-              }
-            ]
+            "response": []
           }
         ]
       },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "vaco123",
+        "text": "Me encantan los dibujos del buzo",
         "date": "24/06/2022 a las 8:55",
         "likes": 0,
         "response": [
           {
             "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "text": "¡Siiiiii!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
@@ -68,28 +45,28 @@
     "price": 210,
     "comments": [
       {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "Nicolas Garcia",
+        "text": "Que buen producto, el buzo tiene una calidad increible",
         "date": "24/06/2022 a las 8:55",
-        "likes": 0,
+        "likes": 1,
         "response": [
           {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "owner": "Manuel Diez",
+            "text": "¡Opino lo mismo!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
           }
         ]
       },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "vaco123",
+        "text": "Me encantan los dibujos del buzo",
         "date": "24/06/2022 a las 8:55",
         "likes": 0,
         "response": [
           {
             "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "text": "¡Siiiiii!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
@@ -106,28 +83,28 @@
     "price": 90,
     "comments": [
       {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "Nicolas Garcia",
+        "text": "La remera esta increible",
         "date": "24/06/2022 a las 8:55",
-        "likes": 0,
+        "likes": 1,
         "response": [
           {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "owner": "Manuel Diez",
+            "text": "¡Opino lo mismo!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
           }
         ]
       },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "vaco123",
+        "text": "Me encantan los dibujos de la remera",
         "date": "24/06/2022 a las 8:55",
         "likes": 0,
         "response": [
           {
             "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "text": "¡Siiiiii!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
@@ -144,33 +121,25 @@
     "price": 100,
     "comments": [
       {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "Nicolas Garcia",
+        "text": "Que buen producto, el buzo tiene una calidad increible",
         "date": "24/06/2022 a las 8:55",
-        "likes": 0,
+        "likes": 1,
         "response": [
           {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "owner": "Manuel Diez",
+            "text": "¡Opino lo mismo!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
           }
         ]
       },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "vaco123",
+        "text": "Me llego en menos de una semana",
         "date": "24/06/2022 a las 8:55",
         "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
+        "response": []
       }
     ]
   },
@@ -180,37 +149,7 @@
     "category": "camperas",
     "img": "./img/camperas.png",
     "price": 150,
-    "comments": [
-      {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      }
-    ]
+    "comments": []
   },
   {
     "title": "Campera Omen",
@@ -220,33 +159,11 @@
     "price": 130,
     "comments": [
       {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "owner": "Manuel Diez",
+        "text": "La campera es super abrigada",
         "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
+        "likes": 1,
+        "response": []
       }
     ]
   },
@@ -256,37 +173,7 @@
     "category": "buzos",
     "img": "./img/buzos.png",
     "price": 200,
-    "comments": [
-      {
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      }
-    ]
+    "comments": []
   },
   {
     "title": "Remera Asus",
@@ -297,27 +184,13 @@
     "comments": [
       {
         "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
+        "text": "¡Que buen producto, el buzo tiene una calidad increible!",
         "date": "24/06/2022 a las 8:55",
         "likes": 0,
         "response": [
           {
             "owner": "Nicolas 222",
-            "text": "!Coincido",
-            "date": "24/06/2022 a las 8:57",
-            "likes": 0,
-            "response": []
-          }
-        ]
-      },{
-        "owner": "Manolo Diez",
-        "text": "!Que buen producto, el buzo tiene una calidad increible",
-        "date": "24/06/2022 a las 8:55",
-        "likes": 0,
-        "response": [
-          {
-            "owner": "Nicolas 222",
-            "text": "!Coincido",
+            "text": "¡Coincido!",
             "date": "24/06/2022 a las 8:57",
             "likes": 0,
             "response": []
@@ -328,6 +201,46 @@
   },
   {
     "title": "Campera Asus",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "camperas",
+    "img": "./img/camperas.png",
+    "price": 150,
+    "comments": []
+  },
+  {
+    "title": "Buzo Lenovo",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "buzos",
+    "img": "./img/buzos.png",
+    "price": 200,
+    "comments": []
+  },
+  {
+    "title": "Remera Lenovo",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
+    "category": "remeras",
+    "img": "./img/remeras.png",
+    "price": 90,
+    "comments": [
+      {
+        "owner": "Manolo Diez",
+        "text": "¡Que buen producto, el buzo tiene una calidad increible!",
+        "date": "24/06/2022 a las 8:55",
+        "likes": 0,
+        "response": [
+          {
+            "owner": "Nicolas 222",
+            "text": "¡Coincido!",
+            "date": "24/06/2022 a las 8:57",
+            "likes": 0,
+            "response": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Campera Lenovo",
     "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ex, neque facilis laudantium laboriosam ut quisquam itaque ducimus. Possimus voluptate provident, quas reprehenderit laboriosam sunt voluptatem earum repudiandae sapiente consequatur.",
     "category": "camperas",
     "img": "./img/camperas.png",

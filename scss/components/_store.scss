@@ -45,6 +45,19 @@
             .card{
                 background-color: $color-grayBlack;
                 transition: all .5s;
+                @media (min-width: 992px) {
+                    height: 320px;
+                }
+                @media (min-width: 1200px) {
+                    height: 350px;
+                }
+
+                .card-body{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    flex-direction: column;
+                }
 
                 div{
                     h5{
