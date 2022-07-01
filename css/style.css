@@ -353,7 +353,7 @@ body .modal .modal-content button {
   color: #fff;
 }
 body .modal .modal-content button.btn__close {
-  background-color: #c60000;
+  background-color: rgb(198, 0, 0);
   color: #fff;
 }
 body .modal .modal-content button:nth-child(2) {
@@ -361,7 +361,7 @@ body .modal .modal-content button:nth-child(2) {
   color: #808191;
 }
 body .modal .modal-content button.btn__buy {
-  background-color: #007500;
+  background-color: rgb(0, 117, 0);
   color: #fff;
 }
 
@@ -694,7 +694,7 @@ body .container-lg .model__container .model__menu h2 {
 }
 @media (min-width: 1200px) {
   #pills-store .store__body a .card {
-    height: 320px;
+    height: 350px;
   }
 }
 #pills-store .store__body a .card .card-body {
@@ -708,7 +708,7 @@ body .container-lg .model__container .model__menu h2 {
   font-size: 1.25rem;
 }
 #pills-store .store__body a .card div p {
-  color: #009900;
+  color: rgb(0, 153, 0);
 }
 #pills-store .store__body a .card div small {
   color: #808191;
@@ -1021,7 +1021,7 @@ body .container-lg .model__container .model__menu h2 {
   width: 50px;
 }
 #modalCarrito #modalCarritoList tr td button {
-  background-color: #cd0000;
+  background-color: rgb(205, 0, 0);
   padding: 3px 8px;
   border-radius: 8px;
 }
