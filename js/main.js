@@ -78,7 +78,7 @@ user__form__sign__in.addEventListener('submit', (e) => {
 
 store__form__create__product.addEventListener('submit', (e) => {
   e.preventDefault()
-  addProduct()
+  storeAddNewProduct()
 })
 
 store__input__filter.addEventListener('keyup', () => {
@@ -193,6 +193,55 @@ class UserNew {
   
 }
 
+class CommentNew {
+
+  constructor(date, owner, text){
+    this.date = date;
+    this.likes = 0;
+    this.owner = owner;
+    this.text = text;
+    this.response = []
+  }
+
+  uploadComment(arr, comment){
+    arr.unshift(comment)
+    storageUpload('products__list', products__list)
+  }
+
+}
+
+class ProductNew {
+  constructor(title, description, category, price){
+    this.title = title;
+    this.description = description;
+    this.category = category;
+    this.img = `./img/${category.toLowerCase()}.png`;
+    this.price = price;
+    this.comments = []
+  }
+
+  addProductStorage(product){
+    products__list.unshift(product)
+    storageUpload('products__list', products__list)
+    products__list = storageGet('products__list')
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Productos subido exitosamente',
+      color: '#808191',
+      background: '#1f1d2b'
+    })
+  }
+}
+
+class CarritoNew {
+  constructor(title, cantidad, price){
+    this.title = title;
+    this.cantidad = parseInt(cantidad);
+    this.price = price
+  }
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  FUNCIONES                                 */
@@ -244,7 +293,7 @@ const userSignUp = () => {
   const [email, username, password, password2] = values
   if(!email.value || !username.value || !password.value || !password2.value){
     Swal.fire({
-      titel: 'Advertencia',
+      title: 'Advertencia',
       text:'Complete todos los campos',
       icon:'warning',
       color: '#808191',
@@ -444,6 +493,29 @@ const storeWriteProducts = () => {
   } 
 }
 
+const storeAddNewProduct = () => {
+  const values = store__form__create__product.getElementsByTagName('input')
+  const [title, description, price] = values
+  const category = store__form__create__product.querySelector('#productCategory').value
+
+  if(!title.value || !description.value || !price.value || !category){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Campos vacios',
+      text: 'Debe llenar todos los campos con informacion valida',
+      color: '#808191',
+      background: '#1f1d2b'
+    })
+    return;
+  }
+
+  const newProduct = new ProductNew(title.value, description.value, category, price.value)
+  
+  newProduct.addProductStorage(newProduct)
+  storeWriteProducts()
+}
+
+
 const storeOpenItem = (e) => {
   const { title, description, category, price, img, comments } = products__list[e];
 
@@ -456,7 +528,7 @@ const storeOpenItem = (e) => {
   store__item__container.querySelector('#modal__category').innerHTML = category
   store__item__container.querySelector('#modal__price').innerHTML = price
   store__item__container.querySelector('#modal__img').src = img
-  const modalComments = document.querySelector('#modal__comments')
+  const store__comments = document.querySelector('#modal__comments')
   
   const input__create__comment = document.querySelector('#inputCreateComment')
   input__create__comment.setAttribute('data__id', e)
@@ -492,7 +564,7 @@ const storeOpenItem = (e) => {
       color: '#808191',
       background: '#1f1d2b'
     })
-    // addItemCarrito(title, cantidad__items.value, price)
+    carritoAddItem(title, cantidad__items.value, price)
   })
 
   input__create__comment.addEventListener('keyup', (e) => {
@@ -523,21 +595,189 @@ const storeOpenItem = (e) => {
       return
     }
 
-    const newComment = {
-      date: output,
-      likes: 0,
-      owner: user__session.username,
-      text: input__create__comment.value,
-      response: []
-    }
-    comments.unshift(newComment)
+    const newComment = new CommentNew(output, user__session.username, input__create__comment.value)
+
+    newComment.uploadComment(comments, newComment)
     console.log(comments)
-    storageUpload('products__list', products__list)
-    // writeComments(comments, modalComments)
+    storeWriteComments(comments, store__comments)
 
   })
 
-  // writeComments(comments, modalComments)
+  storeWriteComments(comments, store__comments)
+}
+
+const storeWriteComments = (arr, parent) => {
+  parent.innerHTML = ''
+
+  arr.forEach(element => {
+    const comment__container = document.createElement('div')
+    comment__container.classList.add('col-12')
+    comment__container.classList.add('p-0')
+
+    const comment__container__card = document.createElement('div')
+    comment__container__card.setAttribute('class', 'card mb-3')
+
+    const comment__container__card__body = document.createElement('div')
+    comment__container__card__body.setAttribute('class', 'card-body p-0')
+
+    const comment__owner = document.createElement('p')
+    comment__owner.setAttribute('class', 'card-title text-start h5 px-3')
+    comment__owner.textContent = element.owner
+
+    const comment__text = document.createElement('p')
+    comment__text.setAttribute('class', 'card-text text-start px-3')
+    comment__text.textContent = element.text
+
+    const comment__methods__container = document.createElement('div')
+    comment__methods__container.setAttribute('class', 'm-3 d-flex commentMethodsContainer')    
+
+    const comment__like__button = document.createElement('button')
+    comment__like__button.setAttribute('class', 'likedButton btn me-2')
+
+    const comment__like__button__i = document.createElement('i')
+    comment__like__button__i.setAttribute('class', 'fa-solid fa-thumbs-up')
+
+    const comment__like__button__content = document.createElement('span')
+    comment__like__button__content.setAttribute('class', 'px-2 numberLikes')
+    comment__like__button__content.textContent = element.likes
+
+    const comment__input__response = document.createElement('input')
+    comment__input__response.setAttribute('class', 'form-control me-2 inputResponse')
+
+    const comment__button__response = document.createElement('button')
+    comment__button__response.setAttribute('class', 'btn buttonSubmit')
+    comment__button__response.textContent = 'Responder'
+
+    const comment__footer__container = document.createElement('div')
+    comment__footer__container.setAttribute('class', 'card-footer text-muted d-flex justify-content-between align-items-center')
+
+    const comment__date = document.createElement('p')
+    comment__date.setAttribute('class', 'text-start m-0')
+    comment__date.textContent = element.date
+
+    const comment__button__see__responses = document.createElement('p')
+    comment__button__see__responses.setAttribute('class', 'btnVerRespuestas')
+    comment__button__see__responses.textContent = `Hay ${element.response.length} respuestas`
+    let comment__number__of__replies = element.response.length
+
+    const comment__container__responses = document.createElement('div')
+    comment__container__responses.setAttribute('class', 'containerCommnetsResponses')
+
+    comment__container.appendChild(comment__container__card)
+    comment__container.appendChild(comment__container__responses)
+
+    comment__container__card.appendChild(comment__container__card__body)
+
+    comment__container__card__body.appendChild(comment__owner)
+    comment__container__card__body.appendChild(comment__text)
+    comment__container__card__body.appendChild(comment__methods__container)
+    comment__container__card__body.appendChild(comment__footer__container)
+
+    comment__methods__container.appendChild(comment__like__button)
+    comment__methods__container.appendChild(comment__input__response)
+    comment__methods__container.appendChild(comment__button__response)
+
+    comment__like__button.appendChild(comment__like__button__i)
+
+    comment__like__button__i.appendChild(comment__like__button__content)
+
+    comment__footer__container.appendChild(comment__date)
+    comment__footer__container.appendChild(comment__button__see__responses)
+
+    
+    parent.appendChild(comment__container)
+
+    comment__button__see__responses.addEventListener('click', e => {
+      comment__container__responses.classList.toggle('active')
+    }) 
+
+    comment__like__button.addEventListener('click', e => {
+      element.likes++;
+      comment__like__button__content.textContent = element.likes;
+      storageUpload('products__list', products__list)
+    })
+
+    comment__button__response.addEventListener('click', () => {
+      comment__input__response.classList.toggle('active')
+      if(comment__input__response.classList.contains('active')){
+        comment__button__response.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+      }else{
+        comment__button__response.textContent = 'Responder'
+      }
+    })
+
+    comment__input__response.addEventListener('keyup', (e) => {
+      if(e.key !== 'Enter'){
+        return;
+      }
+      comment__number__of__replies++
+      comment__button__see__responses.textContent = `Hay ${comment__number__of__replies} respuestas`
+      storeAddNewComment(element, comment__container__responses, comment__input__response.value)
+    })
+
+    if(element.response.length > 0){
+      storeWriteComments(element.response, comment__container__responses);
+    }
+  })  
+}
+
+const storeAddNewComment = (element, parent, value) => {
+  let date = new Date();
+  let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + ' a las ' + String(date.getHours()) + ':' + String(date.getMinutes());
+  if(user__session.length === 0){
+    Swal.fire({
+      icon: 'error',
+      title: 'Inicie sesion',
+      color: '#808191',
+      background: '#1f1d2b'
+    })
+    return
+  }
+  else if(value.length === 0){
+    Swal.fire({
+      icon: 'error',
+      title: 'Debe escribir algo',
+      color: '#808191',
+      background: '#1f1d2b'
+    })
+    return
+  }
+
+  const newComment = new CommentNew(output, user__session.username, value)
+  
+  console.log(element.response)
+  newComment.uploadComment(element.response, newComment)
+  storeWriteComments(element.response, parent)
+  
+}
+
+
+/* ---------------------------- FUNCIONES CARRITO --------------------------- */
+
+const carritoAddItem = (title, cantidad, price) => {
+  const newCarritoItem ={
+    title: title,
+    cantidad: parseInt(cantidad),
+    price: price
+  }
+  let existe = false
+
+
+  user__session.carrito.forEach(item => {
+
+    if(item.title === newCarritoItem.title){
+      item.cantidad = parseInt(item.cantidad) + parseInt(cantidad)
+      existe = true
+      return
+    }
+  })
+
+  if(!existe){
+    userState.carrito.push(newCarritoItem)
+  }
+  user__session.remember === true && storageUpload('user__session', user__session)
+  storeWriteProducts()
+  // writeVenta()
 }
 
 
