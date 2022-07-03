@@ -43,7 +43,8 @@ const store__cards__container = document.querySelector('#storeBody')
 const store__category__filter = document.querySelector('#productCategoryFilter')
 const store__item__container = document.querySelector('#modalItem')
 const store__form__create__product = document.querySelector('#formCreateProduct')
-const store__new__products__container = document.querySelector('#product__featured') 
+const store__new__products__container = document.querySelector('#product__featured')
+const store__form__create__product__close = document.querySelector('#formCreateProductClose')
 
 
 /* -------------------------- ELEMENTOS DEL CARRITO ------------------------- */
@@ -54,6 +55,8 @@ const carrito__buy__container = document.querySelector('#modalBuyCarrito .modal-
 const carrito__card__container = document.querySelector('#tarjeta')
 const carrito__card__form = document.querySelector('#tarjeta__form')
 const carrito__card__btn__open__form = document.querySelector('#btn-abrir-formulario')
+const carrito__card__btn__close__form = document.querySelector('#modalBuyCarritoClose')
+
 
 
 /* -------------------------------------------------------------------------- */
@@ -261,7 +264,6 @@ class CarritoNew {
 const getDataFetch = async() => {
   const respuesta = await fetch('./data/data.json')
   const data = await respuesta.json()
-  console.log(data)
   return data
 }
 
@@ -283,18 +285,8 @@ const storageUpload = (to, data) => {
 
 const getDataProducts = async() => {
   products__list = await (storageGet('products__list').length === 0 ? getDataFetch() : storageGet('products__list'))
-  console.log(products__list)
   storeWriteProducts()
   storeWriteNewProducts()
-}
-
-
-
-
-/* ---------------------- FUNCION CERRAR VENTANA MODAL ---------------------- */
-
-const modalCloseWindow = (parent) => {
-  console.log(parent)
 }
 
 
@@ -335,7 +327,7 @@ const userSignUp = () => {
 
   if(!exist){
     new__user.addUser(new__user)
-    modalCloseWindow(user__modal__sign__up)
+    user__form__sign__up__close.click()
   }
   
 }
@@ -384,7 +376,7 @@ const userSignIn = () => {
     background: '#1f1d2b'
   })
 
-  modalCloseWindow(user__modal__sign__in)
+  user__form__sign__in__close.click()
   console.log('sesion iniciada en:')
   console.log(user__session)
   onUserSession()
@@ -527,6 +519,8 @@ const storeAddNewProduct = () => {
   
   newProduct.addProductStorage(newProduct)
   storeWriteProducts()
+  store__form__create__product__close.click()
+
 }
 
 
@@ -992,12 +986,13 @@ const carritoBuy = () => {
     showConfirmButton: false,
     color: '#808191',
     background: '#1f1d2b'
-
   })
+  store__form__create__product__close
   user__session.carrito = []
   user__session.remember === true && storageUpload('user__session', user__session)  
   carritoWrite()
   carritoWriteCard()
+  carrito__card__btn__close__form.click()
 }
 
 const carritoWriteSelect = () => {
