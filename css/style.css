@@ -286,21 +286,23 @@ body .container-lg .model__container .model__body .body__menu div .menu__notific
   color: #fff;
 }
 body .container-lg .model__container .model__body .body__menu div .menu__notifications ul {
-  background-color: #353340;
+  background-color: #171521;
   max-height: 60vh;
   overflow-y: scroll;
   padding: 0;
   width: 200px;
+  overflow-x: hidden;
 }
 body .container-lg .model__container .model__body .body__menu div .menu__notifications ul li {
-  width: 100%;
   padding: 0.5rem 1.5rem;
   margin-bottom: 1.5rem 0;
   border-bottom: 2px solid #808191;
-}
-body .container-lg .model__container .model__body .body__menu div .menu__notifications ul li p {
   color: #fff;
   font-size: 16px;
+  max-width: 190px;
+}
+body .container-lg .model__container .model__body .body__menu div .menu__notifications ul li:hover {
+  color: #171521;
 }
 body .container-lg .model__container .model__body .body__menu div .menu__user button {
   color: #808191;
@@ -1024,6 +1026,11 @@ body .container-lg .model__container .model__menu h2 {
   background-color: rgb(205, 0, 0);
   padding: 3px 8px;
   border-radius: 8px;
+}
+@media (max-width: 420px) {
+  #modalCarrito #modalCarritoList .carrito__responsive {
+    display: none;
+  }
 }
 
 #modalBuyCarrito .tarjeta {

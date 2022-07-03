@@ -160,22 +160,24 @@ body{
                             }
                 
                             ul{
-                                background-color: $color-grayBlack;
+                                background-color: #171521;
                                 max-height: 60vh;
                                 overflow-y: scroll;
                                 @extend %scrollBar2;
                                 padding: 0;
                                 width: 200px;
-    
+                                overflow-x: hidden;
                                 li{
-                                    width: 100%; 
                                     padding: $p-2 $p-4;
                                     margin-bottom: $m-4 0;
                                     border-bottom: 2px solid $color-gray;                                    
+                                    color: #fff;
+                                    font-size: 16px;
                                     
-                                    p{
-                                        color: #fff;
-                                        font-size: 16px;
+                                    max-width: 190px;
+
+                                    &:hover{
+                                        color: #171521;
                                     }
                                 }
                             }

@@ -34,6 +34,8 @@ const user__menu__container = document.querySelector('#user__menu')
 const user__form__sign__in__close = document.querySelector('#formSigninClose')
 const user__form__sign__up__close = document.querySelector('#formSignUpClose')
 
+const user__notifications__container = document.querySelector('#user__notifications')
+
 
 
 /* ------------------------- ELEMENTOS DE LA TIENDA ------------------------- */
@@ -328,6 +330,7 @@ const userSignUp = () => {
   if(!exist){
     new__user.addUser(new__user)
     user__form__sign__up__close.click()
+    userNotifications(`Usuario creado`)
   }
   
 }
@@ -379,6 +382,7 @@ const userSignIn = () => {
   user__form__sign__in__close.click()
   console.log('sesion iniciada en:')
   console.log(user__session)
+  userNotifications('Sesion iniciada')
   onUserSession()
 
 }
@@ -386,14 +390,9 @@ const userSignIn = () => {
 const onUserSession = () => {
   if(user__session.length !== 0){
     const contentUser = `
-      <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <button type="button" >
         ${user__session.username}
       </button>
-      <ul class="dropdown-menu">
-        <li>
-          <a href='#' class="m-0" id='btn__logOut'>Cerrar sesion</a>
-        </li>
-      </ul>
     `
 
     const contentMenu = `
@@ -409,6 +408,12 @@ const onUserSession = () => {
               <a href="#" data-bs-toggle="modal" data-bs-target="#modalCarrito" class="d-flex justify-content-center align-items-center">
                   <i class="fa-solid fa-cart-shopping"></i>
                   <p class="ms-3 my-0 d-none d-lg-block">Carrito</p>
+              </a>
+          </li>
+          <li>
+              <a href="#" class="d-flex justify-content-center align-items-center" id='btn__logOut'>
+                  <i class="fa-solid fa-user-xmark"></i>
+                  <p class="ms-3 my-0 d-none d-lg-block">Cerrar sesion</p>
               </a>
           </li>
       </ul>
@@ -454,6 +459,23 @@ const userLogOut = () => {
 
     }
   })
+}
+
+const userNotifications = (data) => {
+
+  if(data !== 'No hay notificaciones'){
+    notifications__list.unshift(data)
+  }
+  console.log(notifications__list)
+
+  if(notifications__list.length === 1){
+    user__notifications__container.innerHTML = ''
+  }
+
+  user__notifications__container.innerHTML +=`
+  <li class="dropdown-item">${data}</li>
+  `
+  
 }
 
 
@@ -519,6 +541,7 @@ const storeAddNewProduct = () => {
   
   newProduct.addProductStorage(newProduct)
   storeWriteProducts()
+  userNotifications('Producto añadido')
   store__form__create__product__close.click()
 
 }
@@ -801,7 +824,7 @@ const carritoWrite = () => {
         <td>${title}</td>
         <td><input type="number" min="1" class='input__cantidad' data-id='${carrito__user.indexOf(item)}' value="${cantidad}"></td>
         <td>$${price}</td>
-        <td>$${total}</td>
+        <td class='carrito__responsive'>$${total}</td>
         <td>
             <button class='btn__deleteItem' data-id='${carrito__user.indexOf(item)}'>
                 <i class="fa-solid fa-xmark"></i>
@@ -992,6 +1015,7 @@ const carritoBuy = () => {
   user__session.remember === true && storageUpload('user__session', user__session)  
   carritoWrite()
   carritoWriteCard()
+  userNotifications('Carrito comprado')
   carrito__card__btn__close__form.click()
 }
 
@@ -1021,6 +1045,7 @@ const carritoWriteSelect = () => {
 let users__list = storageGet('users__list')
 let user__session = storageGet('user__session')
 let products__list = []
+let notifications__list = []
 
 /* -------------------------------------------------------------------------- */
 /*                          ESCRIBIENDO LA APLICACION                         */
@@ -1029,3 +1054,4 @@ let products__list = []
 onUserSession()
 getDataProducts()
 carritoWriteSelect()
+userNotifications('No hay notificaciones')
