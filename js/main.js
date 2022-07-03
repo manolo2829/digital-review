@@ -48,8 +48,7 @@ const store__new__products__container = document.querySelector('#product__featur
 
 /* -------------------------- ELEMENTOS DEL CARRITO ------------------------- */
 
-const carrito__container = document.querySelector('#modalCarrito')
-const carrito__btn__delete = carrito__container.querySelector('#btnCarritoDelete')
+const carrito__btn__delete = document.querySelector('#btnCarritoDelete')
 const carrito__btn__buy = document.querySelector('#ventaButton')
 const carrito__buy__container = document.querySelector('#modalBuyCarrito .modal-body')
 const carrito__card__container = document.querySelector('#tarjeta')
@@ -105,30 +104,30 @@ carrito__card__btn__open__form.addEventListener('click', () => {
 
 carrito__card__form.tarjetaNumeroInput.addEventListener('keyup', (e) => {
   let valorInput = e.target.value;
-  numeroTarjetaOnChangue(valorInput)
+  carritoCardNumberChange(valorInput)
 })
 
 carrito__card__form.tarjetaNombreInput.addEventListener('keyup', (e) => {
   let valorInput = e.target.value;
-  nombreTarjetaOnChange(valorInput)
+  carritoCardNameChange(valorInput)
 })
 
 carrito__card__form.selectMes.addEventListener('change', (e) => {
   const card__mes = document.querySelector('#tarjeta #tarjeta__expiracion .mes')
   card__mes.textContent = e.target.value
-  mostrarFrenteTarjeta()
+  carritoCardFront()
 })
 
 carrito__card__form.selectYear.addEventListener('change', (e) => {
   const card__year = document.querySelector('#tarjeta #tarjeta__expiracion .year')
   card__year.textContent = e.target.value.slice(2)
-  mostrarFrenteTarjeta()
+  carritoCardFront()
 })
 
 carrito__card__form.tarjetaCCVInput.addEventListener('keyup', () => {
   const card__ccv = document.querySelector('#tarjeta #tarjeta__ccv')
-  if(!containerTarjeta.classList.contains('active')){
-      containerTarjeta.classList.toggle('active')
+  if(!carrito__card__container.classList.contains('active')){
+    carrito__card__container.classList.toggle('active')
   }
 
   carrito__card__form.tarjetaCCVInput.value = carrito__card__form.tarjetaCCVInput.value
@@ -141,11 +140,21 @@ carrito__card__form.tarjetaCCVInput.addEventListener('keyup', () => {
 
 carrito__btn__buy.addEventListener('click', (e) => {
   e.preventDefault()
-  comprarCarrito()
+  if(user__session.carrito.length === 0){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Su carrito esta vacio',
+      text: 'Primero añada productos y despues realice la compra',
+      color: '#808191',
+      background: '#1f1d2b'
+    })
+  }else{
+    carritoBuy()
+  }
 })
 
 carrito__btn__delete.addEventListener('click', () => {
-  deleteCarrito()
+  carritoDeleteItems()
 })
 
 
@@ -276,7 +285,10 @@ const getDataProducts = async() => {
   products__list = await (storageGet('products__list').length === 0 ? getDataFetch() : storageGet('products__list'))
   console.log(products__list)
   storeWriteProducts()
+  storeWriteNewProducts()
 }
+
+
 
 
 /* ---------------------- FUNCION CERRAR VENTANA MODAL ---------------------- */
@@ -360,8 +372,8 @@ const userSignIn = () => {
   }
   user__session = user[0]
   if(check.checked === true){
-    storageUpload('user__session', user__session)
     user__session.remember = true
+    storageUpload('user__session', user__session)
   }
 
   Swal.fire({
@@ -417,6 +429,8 @@ const onUserSession = () => {
       userLogOut()
     })
 
+    carritoWrite()
+    carritoWriteCard()
   }
 
 }
@@ -751,20 +765,94 @@ const storeAddNewComment = (element, parent, value) => {
   
 }
 
+const storeWriteNewProducts = () => {
+  let num = 0
+  for(let element of products__list){
+    const content = `
+    <a href="#" class="col-lg-3 col-md-6 col-11 my-2">
+      <div class="card bg-dark p-0">
+        <img src="${element.img}" class="card-img" alt="...">
+        <div class="card-img-overlay d-flex justify-content-around flex-column">
+          <h4 class="card-title">${element.title}</h4>
+          <p class="card-text text-success">$${element.price}</p>
+        </div>
+      </div>
+    </a>
+    `
+    num++
+    if(num===5){
+      break;
+    }
+    store__new__products__container.innerHTML += content;
+  }
+}
+
+
 
 /* ---------------------------- FUNCIONES CARRITO --------------------------- */
 
-const carritoAddItem = (title, cantidad, price) => {
-  const newCarritoItem ={
-    title: title,
-    cantidad: parseInt(cantidad),
-    price: price
+const carritoWrite = () => {
+  const carrito__user = user__session.carrito
+  const carrito__container = document.querySelector('#modalCarritoItemList')
+  const carrito__total__price__container = document.querySelector('#precioTotal')
+  carrito__container.innerHTML = ''
+  let carrito__total__price = 0;
+  if(carrito__user?.length !== 0){
+    carrito__user.forEach(item => {
+
+      const {title, cantidad, price} = item
+      const total = cantidad*price
+      const content = `
+      <tr>
+        <td>${title}</td>
+        <td><input type="number" min="1" class='input__cantidad' data-id='${carrito__user.indexOf(item)}' value="${cantidad}"></td>
+        <td>$${price}</td>
+        <td>$${total}</td>
+        <td>
+            <button class='btn__deleteItem' data-id='${carrito__user.indexOf(item)}'>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </td>
+      </tr>
+      `
+      carrito__total__price += total
+      carrito__container.innerHTML += content;
+
+      const carrito__btn__delete = carrito__container.querySelectorAll('.btn__deleteItem')
+      const carrito__input__cantidad = carrito__container.querySelectorAll('.input__cantidad ')
+
+      carrito__btn__delete.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id
+          const carrito__new = user__session.carrito.filter((e)=> {return e !== user__session.carrito[id]})
+          user__session.carrito = carrito__new;
+          user__session.remember === true && localStorage.setItem('user__session', JSON.stringify(user__session))
+          storeWriteProducts()
+          carritoWriteCard()
+        })
+      })
+
+      carrito__input__cantidad.forEach(btn => {
+        btn.addEventListener('change', () => {
+          const id = btn.dataset.id
+          user__session.carrito[id].cantidad = parseInt(btn.value)
+          user__session.remember === true && localStorage.setItem('user__session', JSON.stringify(user__session))
+          carritoWrite()
+          carritoWriteCard()
+        })
+      })
+    })
+    carrito__total__price__container.innerHTML = `$${carrito__total__price}`
   }
+  carrito__total__price__container.innerHTML = `$${carrito__total__price}`
+
+}
+
+
+const carritoAddItem = (title, cantidad, price) => {
+  const newCarritoItem = new CarritoNew(title, cantidad, price)
   let existe = false
-
-
   user__session.carrito.forEach(item => {
-
     if(item.title === newCarritoItem.title){
       item.cantidad = parseInt(item.cantidad) + parseInt(cantidad)
       existe = true
@@ -773,12 +861,163 @@ const carritoAddItem = (title, cantidad, price) => {
   })
 
   if(!existe){
-    userState.carrito.push(newCarritoItem)
+    user__session.carrito.push(newCarritoItem)
   }
   user__session.remember === true && storageUpload('user__session', user__session)
-  storeWriteProducts()
-  // writeVenta()
+  carritoWrite()
+  carritoWriteCard()
 }
+
+const carritoDeleteItems = () => {
+
+  Swal.fire({
+    title: 'Borrar todo el carrito',
+    showCancelButton: true,
+    color: '#808191',
+    background: '#1f1d2b',
+    confirmButtonText: 'confirmar'
+    }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      user__session.carrito = []
+      const carrito__list__container = document.querySelector('#modalCarritoItemList')
+      const carrito__precio__total = document.querySelector('#precioTotal')
+      carrito__list__container.innerHTML = ''
+      carrito__precio__total.innerHTML = '$'+0
+      user__session.remember === true && storageUpload('user__session', user__session)  
+      Swal.fire({
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false,
+        color: '#808191',
+        background: '#1f1d2b'
+
+      })
+    }
+  })
+}
+
+const carritoWriteCard =() => {
+  const carrito__precio__total__container = document.querySelector('#ventaPrecioTotal')
+  const carrito__user = user__session.carrito;
+  let carrito__precio__total = 0
+  if(carrito__user?.length !== 0){
+    carrito__user.forEach(item => {
+      const {cantidad, price} = item
+      const total = cantidad*price
+      carrito__precio__total += total
+    })
+    carrito__precio__total__container.textContent = `$${carrito__precio__total}`
+  }else{
+    carrito__precio__total__container.textContent = `$0`
+  }
+}
+
+const carritoCardFront = () => {
+  if(carrito__card__container.classList.contains('active')){
+    carrito__card__container.classList.remove('active')
+  }
+}
+
+const carritoCardNumberChange = (valorInput) =>{
+  const carrito__card__number = carrito__card__container.querySelector('#tarjetaNumero')
+  const carrito__card__logo = document.querySelector('#marcaLogo')
+
+  carrito__card__form.tarjetaNumeroInput.value = valorInput
+  .replace(/\s/g, '')
+  .replace(/\D/g, '')
+  .replace(/([0-9]{4})/g, '$1 ')
+  .trim();
+
+  carrito__card__number.textContent = valorInput;
+
+  if(valorInput === ''){
+    carrito__card__number.textContent ='#### #### #### ####'
+
+    carrito__card__logo.innerHTML = '';
+  }
+
+  if(valorInput[0] === '4'){
+    carrito__card__logo.innerHTML = '';
+    const imagen = document.createElement('img')
+    imagen.src = 'img/visa.png'
+    carrito__card__logo.appendChild(imagen)
+  }else if(valorInput[0] === '5'){
+    carrito__card__logo.innerHTML = '';
+    const imagen = document.createElement('img')
+    imagen.src = 'img/mastercard.png'
+    carrito__card__logo.appendChild(imagen)
+  }
+  carritoCardFront()
+}
+
+const carritoCardNameChange = (valorInput) => {
+
+  const carrito__card__name = carrito__card__container.querySelector('#tarjetaNombre')
+  const firma = carrito__card__container.querySelector('#tarjetaFirma')
+
+  carrito__card__form.tarjetaNombreInput.value = valorInput
+  .replace(/[0-9]/g, '')
+
+  carrito__card__name.textContent = valorInput;
+  firma.textContent = valorInput;
+
+  if(valorInput == ''){
+    carrito__card__name.textContent = 'jhon doe'
+  }
+
+  carritoCardFront()
+}
+
+const carritoBuy = () => {
+
+  const nombre = carrito__card__form.tarjetaNombreInput.value
+  const numero = carrito__card__form.tarjetaNumeroInput.value
+  const ccv = carrito__card__form.tarjetaCCVInput.value
+  const mes = carrito__card__form.selectMes.value
+  const year = carrito__card__form.selectYear.value
+  if(!nombre || !numero || !ccv || !mes || !year){
+    Swal.fire({
+      icon: 'error',
+      title: 'Complete los campos',
+      color: '#808191',
+      background: '#1f1d2b'
+    })
+    return;
+  }
+  Swal.fire({
+    icon: 'success',
+    text: 'Se ha comprado todo su carrito',
+    timer: 1500,
+    showConfirmButton: false,
+    color: '#808191',
+    background: '#1f1d2b'
+
+  })
+  user__session.carrito = []
+  user__session.remember === true && storageUpload('user__session', user__session)  
+  carritoWrite()
+  carritoWriteCard()
+}
+
+const carritoWriteSelect = () => {
+  for( let i = 1; i<= 12; i++){
+    let option = document.createElement('option')
+    option.value = i;
+    option.innerHTML = i;
+    carrito__card__form.selectMes.appendChild(option)
+  }
+  
+  // obtenemos el año actual
+  const current__date= new Date().getFullYear();
+  for( let i = current__date; i <= current__date + 8; i++){
+    let option = document.createElement('option')
+    option.value = i;
+    option.innerHTML = i;
+    carrito__card__form.selectYear.appendChild(option)
+  }
+}
+
 
 
 /* -------------------------------------------------------------------------- */
@@ -794,3 +1033,4 @@ let products__list = []
 
 onUserSession()
 getDataProducts()
+carritoWriteSelect()
