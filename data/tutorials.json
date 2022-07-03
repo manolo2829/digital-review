@@ -1,0 +1,58 @@
+[
+    {
+        "user": [
+            {
+                "step": "Paso 1",
+                "text": "Usuario ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/camperas.png"
+            },
+            {
+                "step": "Paso 2",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/camperas.png"
+            },
+            {
+                "step": "Paso 3",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/camperas.png"
+            }
+            
+        ],
+        "store": [
+            {
+                "step": "Paso 1",
+                "text": "store ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/remeras.png"
+            },
+            {
+                "step": "Paso 2",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/remeras.png"
+            },
+            {
+                "step": "Paso 3",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/remeras.png"
+            }
+            
+        ],
+        "product": [
+            {
+                "step": "Paso 1",
+                "text": "product ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/buzos.png"
+            },
+            {
+                "step": "Paso 2",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/buzos.png"
+            },
+            {
+                "step": "Paso 3",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "img": "./img/buzos.png"
+            }
+            
+        ]
+    }
+]

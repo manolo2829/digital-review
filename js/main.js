@@ -18,6 +18,17 @@ const swiper2 = new Swiper(".mySwiper2", {
   },
 });
 
+const swiper3 = new Swiper(".mySwiper3", {
+  pagination: {
+    el: ".swiper-pagination",
+    type: "progressbar",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
 /* -------------------------------------------------------------------------- */
 /*                       ELEMENTOS SELECCIONADOS DEL DOM                      */
 /* -------------------------------------------------------------------------- */
@@ -60,6 +71,12 @@ const carrito__card__btn__open__form = document.querySelector('#btn-abrir-formul
 const carrito__card__btn__close__form = document.querySelector('#modalBuyCarritoClose')
 
 
+/* ----------------------- ELEMENTOS DE LOS TUTORIALES ---------------------- */
+
+const tutorials__slider__container = document.querySelector('#mySwiper3')
+const tutorials__btn__user = document.querySelector('#pills-tutorials #tutorialsBtnUser')
+const tutorials__btn__store = document.querySelector('#pills-tutorials #tutorialsBtnStore')
+const tutorials__btn__product = document.querySelector('#pills-tutorials #tutorialsBtnProduct')
 
 /* -------------------------------------------------------------------------- */
 /*                                   EVENTOS                                  */
@@ -160,6 +177,30 @@ carrito__btn__buy.addEventListener('click', (e) => {
 
 carrito__btn__delete.addEventListener('click', () => {
   carritoDeleteItems()
+})
+
+
+/* ------------------------ EVENTOS DE LOS TUTORIALES ----------------------- */
+
+tutorials__btn__user.addEventListener('click', () => {
+  tutorials__btn__product.classList.remove('active')
+  tutorials__btn__store.classList.remove('active')
+  tutorials__btn__user.classList.add('active')
+  tutorialWriteSteps('user')
+})
+
+tutorials__btn__store.addEventListener('click', () => {
+  tutorials__btn__product.classList.remove('active')
+  tutorials__btn__user.classList.remove('active')
+  tutorials__btn__store.classList.add('active')
+  tutorialWriteSteps('store')
+})
+
+tutorials__btn__product.addEventListener('click', () => {
+  tutorials__btn__store.classList.remove('active')
+  tutorials__btn__user.classList.remove('active')
+  tutorials__btn__product.classList.add('active')
+  tutorialWriteSteps('product')
 })
 
 
@@ -1038,6 +1079,48 @@ const carritoWriteSelect = () => {
 }
 
 
+/* -------------------------- FUNCIONES TUTORIALES -------------------------- */
+
+const tutorialWriteSteps = async(type) => {
+  tutorials__slider__container.innerHTML = ''
+  const info = await (tutorialsGetData())
+  let tutorial__information = null
+  switch (type) {
+    case 'user':
+      tutorial__information = info[0].user
+      break;
+    case 'store':
+      tutorial__information = info[0].store
+      break;
+    case 'product':
+      tutorial__information = info[0].product
+      break;
+  }
+  tutorial__information.map(element => {
+    console.log(element)
+    const content = `
+    <div class="swiper-slide px-5">
+      <div class="row p-1 h-100 justify-content-center align-items-center">
+        <p class="col-12 swiper__title">${element.step}</p>                                
+        <div class="col-lg-6 col-12 swiper__text">
+          <p>${element.text}</p>
+        </div>
+
+        <div class="col-lg-6 col-12 swiper__img">
+          <img src="${element.img}" alt="">
+        </div>
+      </div>
+    </div>
+    `
+    tutorials__slider__container.innerHTML += content;
+  })
+} 
+
+const tutorialsGetData = async() => {
+  const respuesta = await fetch(`./data/tutorials.json`)
+  const data = await respuesta.json()
+  return data
+}
 
 /* -------------------------------------------------------------------------- */
 /*                     VARIABLES GLOBALES DE LA APLICACION                    */
@@ -1055,3 +1138,4 @@ onUserSession()
 getDataProducts()
 carritoWriteSelect()
 userNotifications('No hay notificaciones')
+tutorialWriteSteps('user')
