@@ -56,11 +56,14 @@
                     -webkit-align-items: center;
                     align-items: center;
 
-                    .swiper__title{
+                    .swiper__step{
                         font-size: $h4-font-size;
                     }
 
-                    
+                    .swiper__title{
+                        color: $color-blue;
+                        font-size: $h5-font-size;
+                    }                  
 
                     .swiper__img{
                         img{

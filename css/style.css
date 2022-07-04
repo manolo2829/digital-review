@@ -1322,8 +1322,12 @@ body .container-lg .model__container .model__menu h2 {
   -webkit-align-items: center;
   align-items: center;
 }
-#pills-tutorials .tutorials__body .tutorials__body__container .swiper .swiper-slide .swiper__title {
+#pills-tutorials .tutorials__body .tutorials__body__container .swiper .swiper-slide .swiper__step {
   font-size: 1.5rem;
+}
+#pills-tutorials .tutorials__body .tutorials__body__container .swiper .swiper-slide .swiper__title {
+  color: #4bb1cd;
+  font-size: 1.25rem;
 }
 #pills-tutorials .tutorials__body .tutorials__body__container .swiper .swiper-slide .swiper__img img {
   width: 100%;

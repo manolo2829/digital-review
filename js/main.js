@@ -18,17 +18,6 @@ const swiper2 = new Swiper(".mySwiper2", {
   },
 });
 
-const swiper3 = new Swiper(".mySwiper3", {
-  pagination: {
-    el: ".swiper-pagination",
-    type: "progressbar",
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
-
 /* -------------------------------------------------------------------------- */
 /*                       ELEMENTOS SELECCIONADOS DEL DOM                      */
 /* -------------------------------------------------------------------------- */
@@ -454,7 +443,7 @@ const onUserSession = () => {
           <li>
               <a href="#" class="d-flex justify-content-center align-items-center" id='btn__logOut'>
                   <i class="fa-solid fa-user-xmark"></i>
-                  <p class="ms-3 my-0 d-none d-lg-block">Cerrar sesion</p>
+                  <p class="ms-3 my-0 d-none d-lg-block">Log Out</p>
               </a>
           </li>
       </ul>
@@ -827,7 +816,7 @@ const storeWriteNewProducts = () => {
   let num = 0
   for(let element of products__list){
     const content = `
-    <a href="#" class="col-lg-3 col-md-6 col-11 my-2">
+    <a href="#" class="col-lg-3 col-md-6 col-11 my-2 item__key" data-bs-target='#modalItem' data-bs-toggle='modal' data-id='${products__list.indexOf(element)}'>
       <div class="card bg-dark p-0">
         <img src="${element.img}" class="card-img" alt="...">
         <div class="card-img-overlay d-flex justify-content-around flex-column">
@@ -843,6 +832,15 @@ const storeWriteNewProducts = () => {
     }
     store__new__products__container.innerHTML += content;
   }
+  
+  const item__list  = store__new__products__container.querySelectorAll('.item__key')
+  item__list.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id
+      storeOpenItem(id)
+    })
+  })
+
 }
 
 
@@ -1096,24 +1094,62 @@ const tutorialWriteSteps = async(type) => {
       tutorial__information = info[0].product
       break;
   }
+
+  const swiper__container = document.createElement('div')
+  swiper__container.classList.add('swiper')
+  swiper__container.classList.add('mySwiper3')
+
+  const swiper__card__container = document.createElement('div')
+  swiper__card__container.classList.add('swiper-wrapper')
+
+  const swiper__button__next = document.createElement('div')
+  swiper__button__next.classList.add('swiper-button-next')
+
+  const swiper__button__prev = document.createElement('div')
+  swiper__button__prev.classList.add('swiper-button-prev')
+
+  const swiper__pagination = document.createElement('div')
+  swiper__pagination.classList.add('swiper-pagination')
+
+  swiper__container.appendChild(swiper__card__container)
+  swiper__container.appendChild(swiper__button__next)
+  swiper__container.appendChild(swiper__button__prev)
+  swiper__container.appendChild(swiper__pagination)
+
+  tutorials__slider__container.appendChild(swiper__container)
+
+
+  
   tutorial__information.map(element => {
     console.log(element)
     const content = `
     <div class="swiper-slide px-5">
       <div class="row p-1 h-100 justify-content-center align-items-center">
-        <p class="col-12 swiper__title">${element.step}</p>                                
+        <p class="col-12 swiper__step">${element.step}</p>                                
         <div class="col-lg-6 col-12 swiper__text">
+          <p class="swiper__title">${element.title}</p>
           <p>${element.text}</p>
         </div>
-
         <div class="col-lg-6 col-12 swiper__img">
           <img src="${element.img}" alt="">
         </div>
       </div>
     </div>
     `
-    tutorials__slider__container.innerHTML += content;
+    swiper__card__container.innerHTML += content;
   })
+
+
+  const swiper3 = new Swiper(".mySwiper3", {
+    pagination: {
+      el: ".swiper-pagination",
+      type: "progressbar",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 } 
 
 const tutorialsGetData = async() => {

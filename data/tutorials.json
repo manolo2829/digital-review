@@ -3,17 +3,26 @@
         "user": [
             {
                 "step": "Paso 1",
-                "text": "Usuario ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Crear un usuario",
+                "text": "Para crear un usuario debe dirigirse al menu de la izquierda, y seleccionar la opcion Sign Up. Luego debe completar todos los campos para poder generar el usuario, se pueden tener varios usuarios con el mismo email, pero el nombre de usuario debe ser unico",
                 "img": "./img/camperas.png"
             },
             {
                 "step": "Paso 2",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Iniciar sesion",
+                "text": "Para iniciar sesion debe dirigirse al mismo menu, seleccionar la opcion Sign In y completar los campo.",
                 "img": "./img/camperas.png"
             },
             {
                 "step": "Paso 3",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Completado",
+                "text": "Si realizo todo los pasos con exito, podra ver su nombre en la esquina superior derecha.",
+                "img": "./img/camperas.png"
+            },
+            {
+                "step": "Paso 4",
+                "title": "Cerrar sesion",
+                "text": "Si desea cerrar sesion, debe dirigirse al menu de la izquierda y seleccionar la opcion Log Out. Si cierra sesion perdera todos los productos del carrito",
                 "img": "./img/camperas.png"
             }
             
@@ -21,17 +30,44 @@
         "store": [
             {
                 "step": "Paso 1",
-                "text": "store ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Acceder a la tienda",
+                "text": "Para dirigirse a la tienda debe selecciona la opcion Store del menu de la izquierda.",
                 "img": "./img/remeras.png"
             },
             {
                 "step": "Paso 2",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Filtrar los productos",
+                "text": "Dentro de la tienda hay dos metodos para filtrar los productos, por nombre o por categoria. Si selecciona el buscador podra escribir el nombre del producto, y si selecciona la flecha que esta al lado del buscador podra ver las distintas categorias.",
                 "img": "./img/remeras.png"
             },
             {
                 "step": "Paso 3",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Iniciar sesion",
+                "text": "Para poder añadir un producto al carrito, comprarlo o dejar un comentario, debe iniciar sesion",
+                "img": "./img/remeras.png"
+            },
+            {
+                "step": "Paso 4",
+                "title": "Dejar un comentario",
+                "text": "Debe dirigirse a la seccion de comentarios y escriba lo que quiera. Puede ver los comentarios de los distintos usuario y dejar su me gusta. Tambien puede responderle.",
+                "img": "./img/remeras.png"
+            },
+            {
+                "step": "Paso 5",
+                "title": "Ver detalles de un producto",
+                "text": "Para ver los detalles de un producto debe seleccionarlo y se le abrira una ventana con los detalles. Desde esa ventana se pueden añadir los productos al carrito, simplemente seleccione la cantidad y ponga añadir al carrito",
+                "img": "./img/remeras.png"
+            },
+            {
+                "step": "Paso 6",
+                "title": "Ver carrito",
+                "text": "Debe dirigirse al menu de la izquierda y seleccionar carrito. Despues de eso se le abrira una ventana modal con todos los productos añadidos al carrito, desde de ahi podra modificar la cantidad de productos de cada tipo y ver el precio total..",
+                "img": "./img/remeras.png"
+            },
+            {
+                "step": "Paso 6",
+                "title": "Comprar carrito",
+                "text": "Para comprar el carrito debe seleccionar el boton comprar que esta ubicado debajo de todos los productos del carrito. Finalmente debe completar todos los campos de la tarjeta.",
                 "img": "./img/remeras.png"
             }
             
@@ -39,17 +75,20 @@
         "product": [
             {
                 "step": "Paso 1",
-                "text": "product ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Iniciar sesion",
+                "text": "Para poder crear un producto debe iniciar sesion",
                 "img": "./img/buzos.png"
             },
             {
                 "step": "Paso 2",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Crear un producto",
+                "text": "Debe dirigirse al menu de la izquierda, y seleccionar la opcion Create product. Luego debe completar todos los campos, y la imagen del producto se añadira sola segun la categoria que sea seleccionada",
                 "img": "./img/buzos.png"
             },
             {
                 "step": "Paso 3",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor obcaecati expedita, assumenda eius culpa laudantium. Porro consequuntur quas architecto voluptatum, natus, dicta quidem aspernatur commodi necessitatibus aut at nemo fuga!",
+                "title": "Visualice su producto en la tienda",
+                "text": "Dirigase a la tienda y visualice su producto",
                 "img": "./img/buzos.png"
             }
             
